@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<xs:attribute name="suffix" type="xs:string"/>
+	<xs:element name="name">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="first_name" type="xs:string"/>
+				<xs:element name="last_name" type="xs:string"/>
+				<xs:element name="middle_name" type="xs:string"/>
+			</xs:sequence>
+			<xs:attribute ref="suffix" use="optional"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="gender">
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:enumeration value="male"/>
+				<xs:enumeration value="female"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="birth_date">
+		<xs:simpleType>
+			<xs:restriction base="xs:date">
+				<xs:minInclusive value="1900-01-01"/>
+				<xs:maxInclusive value="2013-01-01"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="phone" type="xs:string"/>
+	<xs:simpleType name="code">
+		<xs:restriction base="xs:int">
+			<xs:minExclusive value="10000"/>
+			<xs:maxInclusive value="99999"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:attribute name="zipcode" type="code"/>
+	<xs:simpleType name="states">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="AL"/>
+			<xs:enumeration value="AK"/>
+			<xs:enumeration value="AZ"/>
+			<xs:enumeration value="AR"/>
+			<xs:enumeration value="CA"/>
+			<xs:enumeration value="CO"/>
+			<xs:enumeration value="CT"/>
+			<xs:enumeration value="DE"/>
+			<xs:enumeration value="FL"/>
+			<xs:enumeration value="GA"/>
+			<xs:enumeration value="HI"/>
+			<xs:enumeration value="PA"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:element name="address">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="street" type="xs:string"/>
+				<xs:element name="city" type="xs:string"/>
+				<xs:element name="state" type="states"/>
+			</xs:sequence>
+			<xs:attribute ref="zipcode" use="required"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="Email" type="xs:string"/>
+	<xs:group name="personal_info">
+		<xs:sequence>
+			<xs:element ref="name"/>
+			<xs:element ref="gender"/>
+			<xs:element ref="birth_date"/>
+			<xs:element ref="phone"/>
+			<xs:element ref="address"/>
+			<xs:element ref="Email"/>
+		</xs:sequence>
+	</xs:group>
+	<xs:element name="start_date" type="xs:date"/>
+	<xs:element name="end_date" type="xs:date"/>
+	<xs:element name="school" type="xs:string"/>
+	<xs:element name="major" type="xs:string"/>
+	<xs:element name="education">
+		<xs:complexType>
+			<xs:sequence minOccurs="1">
+				<xs:element ref="start_date"/>
+				<xs:element ref="end_date"/>
+				<xs:element ref="school"/>
+				<xs:element ref="major"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

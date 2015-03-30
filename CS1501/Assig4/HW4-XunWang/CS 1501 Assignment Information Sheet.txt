@@ -1,0 +1,26 @@
+CS 1501 Assignment Information Sheet
+ 
+You must submit an information sheet with every assignment. Also be sure to submit all materials following the procedures described on the submission procedures page.
+Name: Xun Wang(PittID: xuw10)
+Assignment #: 4
+Recitation Day and Time: Monday 15:00-15:50
+Recitation Instructor: Hany Saleeb
+Program Due Date: November 4, 2013
+Handed in Date: November 4, 2013
+Source code file name(s):
+1) hw4_xuw10.java(this is just the test client)
+2) EdgeWeightedDigraph.java(modified to be directional and add some methods)
+3) Eulerian.java
+4) Modified author's files: CC.java, DijkstraSP.java, KruskalMST.java, DirectedEdge.java 
+5) Utilities: Bag.java, In.java, IndexMinPQ.java, MinPQ.java, Queue.java, Stack.java, StdIn.java, StdIn.java, StdOut.java, UF.java
+
+Compiled (.jar or .exe) file name(s):hw4_xuw10
+ 
+Other file name(s) (if relevant):assigngraph.txt
+
+Does your program compile without error?: yes
+Does your program run without error?: yes
+Additional comments (including problems and extra credit):
+To run the program correctly:
+java hw4_xuw10 assigngraph.txt
+if the number of arguments !=2, there will be an error message to tell the user and the program exits.
