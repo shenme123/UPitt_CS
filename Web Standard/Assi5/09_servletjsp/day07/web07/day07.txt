@@ -1,0 +1,171 @@
+1、转发与重定向的区别
+	(1)相同点：
+		都可以实现一个web组件(jsp,servlet)调用另外
+	一个web组件。
+	(2)区别:
+		a,转发可以共享request对象，而重定向不可以。
+		b,转发的地址限于一个应用,而重定向可以任意。
+		c,转发之后，浏览器地址栏的地址不变，而重
+		定向会变。
+		d,转发用于一件事未做完，而重定向用于一件事
+		已经完成。
+2、状态管理
+	(1)什么是状态管理
+			将浏览器与web服务器之间的多次交互所涉及的
+		数据保存下来。
+			因为浏览器与web服务器之间采用的是http
+		协议，而http协议是一个“无状态"的协议,即
+		"一次请求，一次连接",服务器并不去记录是
+		哪一个浏览器在访问。这种“无状态”的特性，
+		其优点是效率非常高，可以尽可能的为更多的
+		客户端(浏览器)服务，但是，在某些web应用当中，
+		会有问题，比如“网上购物”，在购物过程当中，
+		浏览器与web服务器之间要进行多次交互，要将
+		这多次交互当做一个整体来处理，也就是说，要
+		将多次交互所涉及的数据保存下来，此时，需要
+		进行状态管理。
+	(2)怎样进行状态管理
+		a,将状态(也就是多次交互所涉及的数据)保存在
+		客户端(浏览器),即cookie技术。
+		b,将状态保存在服务器端，即session技术。
+	(3)cookie技术
+		a,什么是cookie?
+			浏览器访问服务器时，服务器会将少量的数据
+		以set-cookie消息头的方式发送给浏览器，浏览器
+		会将这些数据保存下来。当浏览器下次访问服务器
+		时，会将这些数据以cookie消息头的方式发送给
+		服务器。
+		b,创建cookie?
+			Cookie c = new Cookie(String name,
+			String value);
+			response.addCookie(c);
+		c,查询cookie
+			//如果没有找到cookie，会返回null。
+			Cookie[] request.getCookies();
+			//获得cookie的名称
+			String cookie.getName();
+			//获得cookie的值
+			String cookie.getValue();
+		d,cookie的生存时间
+			在默认情况下，浏览器会将cookie保存到
+		内存空间里面，当浏览器关闭时，会删除cookie。
+			cookie.setMaxAge(int seconds);
+			该方法注意以下几点:
+				d1, seconds单位是秒
+				d2,seconds的值可以是：
+					大于0：浏览器会将cookie保存到硬盘上。
+					小于0：缺省值(放到内存空间)。
+					等于0：立即删除cookie。
+						比如要删除一个名叫"userprofile"
+					的cookie,代码如下：
+						Cookie c = 
+						new Cookie("userprofile","");
+						c.setMaxAge(0);
+						response.addCookie(c);
+		e,cookie的编码问题
+				cookie的值只能是ascii字符，如果是中文，
+			需要将中文转换成ascii字符表示。
+				String URLEncoder.encode(
+				String str,String code);
+				String URLDecoder.decode(
+				String str,String code);	
+
+	练习：
+		写一个Find_Add_CookieServlet,该servlet
+	先查找有没有一个名称为"userprofile"的cookie,
+	如果有，则显示该cookie的值; 如果没有，则
+	创建该cookie。
+		
+		f,cookie的路径问题
+			浏览器访问服务器上的某个地址时，会先
+		比较这个地址与cookie的路径是否匹配，只有
+		符合条件的cookie才会发送。
+			cookie会有一个默认的路径，该路径等于
+		创建该cookie的组件的路径。
+			比如 /web07_cookie/biz1/下面的addCookie.jsp
+		创建了一个名叫company的cookie,此时，cookie
+		的路径就是/web07_cookie/biz1。
+			当访问服务器上的地址
+				/web07_cookie/findCookie.jsp  error!
+				/web07_cookie/biz1/findCookie1.jsp  ok!
+				/web07_cookie/biz1/sub/findCookie2.jsp ok!
+			可以发现:
+				只有要访问的服务器的地址是cookie的路径
+			或者其子路径时，浏览器才会将该cookie发送
+			给服务器。
+			经常需要重新设置cookie的路径，以确保
+		当某个组件创建了cookie，其它组件都能访问到。
+		  Cookie c = new Cookie...
+		  c.setPath("/appname");
+		g,cookie的限制
+			cookie可以被禁止。
+			cookie不安全(cookie是保存在浏览器所在
+			的机器上的，可以被查看)。
+			cookie保存的数据大小有限制(4k左右),而且，
+		浏览器保存的cookie的个数也有限制(300个)。
+			cookie只能够保存字符串。
+	3、session技术
+		(1)什么是session(会话)?
+			浏览器访问服务器时，服务器会创建一个
+		session对象(该对象有一个唯一的id号，称之
+		为sessionId),服务器在默认情况下会将sessionId
+		以set-cookie消息头的方式发送给浏览器，浏览器
+		会将sessionId保存下来。当浏览器下次访问服务
+		器时，会将sessionId发送给服务器(以cookie
+		消息头的方式),服务器会依据sessionId找到之前
+		创建好的session对象。
+		(2)如何获得session对象?
+			a,HttpSession s = 
+			request.getSession();
+				该方法是request.getSession(true)的简写
+			形式。
+			b,HttpSession s = 
+				request.getSession(boolean flag);
+				当flag = true时:
+					服务器会先检查请求当中是否有sessionId,
+				如果没有，则创建一个session对象(符合
+				HttpSession接口要求的对象)；
+				如果有,则会依据sessionId查找对应的
+				session对象，如果找到了，则返回，找不
+				到，则创建一个新的session对象。
+				当flag = false时：
+					服务器会先检查请求当中是否有sessionId,
+				如果没有，返回null；
+				如果有,则会依据sessionId查找对应的
+				session对象，如果找到了，则返回，找不
+				到，返回null。
+		(3)常用的几个方法
+					a, String getId():返回sessionId。
+					b, 绑订相关的方法
+					//绑订数据到session
+					setAttribute(String name,Object obj)
+					//解除绑订
+					removeAttribute(String name)
+					//依据绑订名称获得绑订值
+					//如果绑订名称对应的值不存在，返回null
+					Object getAttribute(String name)
+					
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+				
+			当flag = false时
+			
+			
+		 
+					
+			
+			
+					
+						
+					
+	
+			
+	

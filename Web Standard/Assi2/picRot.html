@@ -1,0 +1,39 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+<head>
+<title>网页特效 网页图片旋转效果 站长特效网欢迎您。</title>
+<style type="text/css">
+body{background:black}
+#www_zzjs_net{position:absolute;height:300px;top:200px;}
+</style>
+<script type="text/javascript">
+	var left=100;
+	var img=document.getElementById('www_zzjs_net');
+	var imgWidth=400;
+	var pi=Math.PI;
+	var x=0, temp=0;
+	function init(){
+		document.getElementById('www_zzjs_net').style.left=left+'px';
+		var set=setInterval('goOn()',40);
+	}
+	function goOn(){
+		temp=Math.cos(x);
+		document.getElementById('www_zzjs_net').style.width=Math.abs(imgWidth*temp)+'px';
+		document.getElementById('www_zzjs_net').style.left=(left+(imgWidth-Math.abs(imgWidth*temp/2)))+'px';
+		if(temp<0){
+			document.getElementById('www_zzjs_net').style.filter='FlipH(enabled:true)';
+		}else{
+			document.getElementById('www_zzjs_net').style.filter='FlipH(enabled:false)';
+		}
+		x+=pi/90;
+	}
+</script>
+</head>
+<body >
+
+<div id="zzjs_net">
+<img id="www_zzjs_net" src="/image/1.jpg" alt="网页教学网"/>
+</div>
+<script type="text/javascript">init();</script>
+</body>
+</html>

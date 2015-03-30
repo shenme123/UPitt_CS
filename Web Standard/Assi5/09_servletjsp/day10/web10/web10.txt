@@ -1,0 +1,49 @@
+1、cookie被禁止以后，如何继续使用session？(了解)
+	(1)解决方式:
+		使用url重写来解决这个问题。
+	(2)什么是url重写?
+		在要访问的组件(jsp/servlet)的地址后面添加
+		sessionId。需要通过编程的方式来生成这个地址。
+	(3)编程：
+		//用在链接地址、表单提交地址。
+		String response.encodeURL(String url);
+		比如:
+			<a href="<%=response.encodeURL("count")%>">
+			<form action="<%=response.encodeURL("some")%>">
+		//用在重定向
+		String response.encodeRedirectURL(String url);
+		比如:
+			response.sendRedirect(
+			response.encodeRedirectURL("some"));
+2、session与cookie比较
+	保存的数据类型：
+		session可以保存任意类型的数据，而cookie
+		只能保存字符串。
+	保存数据的时间：
+		session保存数据的时间有限，而cookie保存数据
+		的时间可以很长。
+	安全性:
+		cookie不安全，session安全。
+	session将数据都保存在服务器端，服务器的压力
+比较大(有些服务器会将session中的数据临时写到
+硬盘或者数据库上面)，而cookie会将数据保存在客户
+端，对服务器没有太大的数据压力。
+
+3、过滤器
+	(1)什么是过滤器?
+		servlet规范当中定义的一种特殊的类，可以用来
+	拦截容器的调用过程。
+	(2)编程
+		step1 写一个java类，实现Filter接口。
+		step2 在doFilter方法里面，实现相应的处理
+		逻辑。
+		step3 配置过滤器(web.xml),告诉容器对哪一些
+		请求进行拦截。
+	
+		
+	
+	
+			
+	
+			
+		

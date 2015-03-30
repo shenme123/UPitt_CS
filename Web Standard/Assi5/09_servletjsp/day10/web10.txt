@@ -1,0 +1,122 @@
+1、cookie被禁止以后，如何继续使用session？(了解)
+	(1)解决方式:
+		使用url重写来解决这个问题。
+	(2)什么是url重写?
+		在要访问的组件(jsp/servlet)的地址后面添加
+		sessionId。需要通过编程的方式来生成这个地址。
+	(3)编程：
+		//用在链接地址、表单提交地址。
+		String response.encodeURL(String url);
+		比如:
+			<a href="<%=response.encodeURL("count")%>">
+			<form action="<%=response.encodeURL("some")%>">
+		//用在重定向
+		String response.encodeRedirectURL(String url);
+		比如:
+			response.sendRedirect(
+			response.encodeRedirectURL("some"));
+2、session与cookie比较
+	保存的数据类型：
+		session可以保存任意类型的数据，而cookie
+		只能保存字符串。
+	保存数据的时间：
+		session保存数据的时间有限，而cookie保存数据
+		的时间可以很长。
+	安全性:
+		cookie不安全，session安全。
+	session将数据都保存在服务器端，服务器的压力
+比较大(有些服务器会将session中的数据临时写到
+硬盘或者数据库上面)，而cookie会将数据保存在客户
+端，对服务器没有太大的数据压力。
+
+3、过滤器
+	(1)什么是过滤器?
+		servlet规范当中定义的一种特殊的类，可以用来
+	拦截容器的调用过程。
+	(2)编程
+		step1 写一个java类，实现Filter接口。
+		step2 在doFilter方法里面，实现相应的处理
+		逻辑。
+		step3 配置过滤器(web.xml),告诉容器对哪一些
+		请求进行拦截。
+	(3)过滤器的优先级
+		如果有多个过滤器都满足过滤的条件，则容器
+		依据<filter-mapping>的先后顺序来调用对应的
+		过滤器。	
+	(4)初始化参数
+		step1 在web.xml文件当中，使用
+		<init-param>添加初始化参数。
+		step2 使用FilterConfig.getInitParameter(Sting 
+		paraName)访问初始化参数。
+	(5)过滤器的优点
+		a,将多个组件(jsp,servlet)相同的处理逻辑集中
+		写在过滤器里面，方便代码的维护。
+		b,可以实现代码的"可插拔性"：即添加或者减少
+		某个模块，不会影响程序的正常执行。
+	练习：
+		写一个CommentFilter2(过滤器),检查评论的长度，
+	如果超过10个字符，提示用户评论的长度非法。否则
+	，调用CommentServlet输出评论的内容。
+
+4、监听器
+	(1)什么是监听器
+		servlet规范中定义的一种特殊的类，用来监听容器
+	产生的两类事件：
+		a,生命周期相关事件
+			当容器创建或者销毁request,session,
+			ServletContext(servlet上下文)这三种对象
+			时产生对应的事件。
+		b,绑订相关事件	
+			调用了request,session,ServletContext的
+			setAttribute,removeAttribute这两个方法时，
+			产生相对应的事件。
+	(2)编程:
+			step1 写一个java类，依据要监听的事件类型
+			选择相对应的接口(比如，要监听session的
+			创建和销毁
+			step2 在接口所声明的方法内部，实现相应的监听
+			的处理逻辑。
+			step3 配置监听器(web.xml)：给容器注册一个
+			监听器。
+			
+	统计在线人数：
+		只需要编写一个监听器，监听session的个数。
+		
+	(3)ServletContext(Servlet上下文)
+		a,什么是Servlet上下文?
+			容器在启动的时候，会为每一个已经部署的应用
+		创建唯一的一个符合ServletContext接口的对象，
+		该对象称之为Servlet上下文。
+			该对象会一直存在，除非关闭容器。
+		b,获得ServletContext?
+			方式一: GenericServlet.getServletContext();
+			方式二: ServletConfig.getServletContext();
+			方式三：HttpSession.getServletContext();
+		c,作用：
+			作用一：绑订数据
+				setAttribute(String name,Object obj);
+				Object getAttribute(String name);
+				removeAttribute(String name);
+			request,session,servlet上下文都可以绑订
+		数据，在满足相应要求的情况下，应该尽量用
+		生命周期短的。
+			作用二：访问全局的初始化参数(在web.xml
+			文件中，使用<context-param>配置的初始化
+			参数，可以被所有的servlet访问)
+				String getInitParameter(String paraName);
+			作用三：依据逻辑路径获得一个实际部署时的
+			物理路径。
+				String getRealPath(String path);
+				
+	练习：
+		写一个过滤器，用来进行session验证。	
+	(将main.jsp中的session验证代码写到过滤器里面)。		
+		
+					
+		
+	
+	
+			
+	
+			
+		

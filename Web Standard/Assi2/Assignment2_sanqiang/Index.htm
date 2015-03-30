@@ -1,0 +1,50 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" /> 
+    <title>Android Movement Game</title>
+    <link href="Css.css" rel="stylesheet" type="text/css" />
+    <script src="JScript.js" type="text/javascript"></script>
+</head>
+<body>
+<div id="top1">
+<table><tr><td id="top_char">Android Movement Game</td><td class="top1_right" rowspan="2">
+<div id="top_tab">
+<ul>
+<li><a href="Index.htm">HomePage</a></li>
+<li><a href="#" onclick="Up()">Up</a></li>
+<li><a href="#" onclick="Down()">Down</a></li>
+<li><a href="#" onclick="Left()">Left</a></li>
+<li><a href="#" onclick="Right()">Right</a></li>
+<li><a href="#" onclick="StartMove()">RandomMove</a></li>
+</ul></div>
+</td></tr></table>
+</div>
+<div id="top2"></div>
+<div id="content">
+<div class="con"><br />
+<div class="title">Game</div>
+<div class="con_White">
+<div id="Up"></div>
+<div id="Left"></div>
+<div id="Item"><img src="Image/peo.jpg" alt="Show" id="Android" /></div>
+</div>
+<div style="clear:both">
+            <br />
+            You can use Up,Down,Left,Right Button in your keyboard to control the robot move. Also you can make the robot move itself with the button following.
+            <br />
+    <input id="RandomMovement" type="button" value="Start RandomMovement" onclick="StartMove()" />
+    <input id="Button1" type="button" value="Add one more robot" onclick="Addone()" /><br /><div id="show"></div><br />
+<img src="Image/1.gif" alt="ShowImage" id="ShowImage" onclick="Addone()" /></div>
+<script type="text/javascript">
+    setInterval("RandomPic()", 500);
+</script><br />
+<span>Time:</span><span id="TimeShow"></span>
+<script type="text/javascript">
+    setInterval("getTime('TimeShow')", 1000);
+</script>
+</div>
+</div>
+<div id="bottom">Copyright@2011 Sanqiang, Zhao Project 2</div>
+</body>
+</html>

@@ -1,0 +1,38 @@
+1、上传文件(了解)
+	step1、设置表单的enctype属性
+	为"multipart/form-data"(即通知
+	浏览器不要对表单中的参数值进行编码),
+	此时，浏览器会以表单域为单位，将数据
+	划分成多个数据块发送给服务器。表单
+	的提交方式必须是"post"。
+	step2、在服务器端，此时，不能够直接使用
+	request.getParameter方法来获得参数值。要使用
+	InputStream request.getInputStream()获得一个
+	输入流，通过分析该流来获得参数值。一般使用
+	一些工具类(比如 apache提供的
+	commons-fileupload.jar)来帮我们分析。
+	
+2、servlet线程安全问题
+	(1)线程安全问题产生的原因?
+		当有多个请求访问servlet容器时，容器会产生
+	对应的多个线程来处理请求，在默认情况下，
+	某个类型的servlet只会有唯一的一个实例，这样，
+	就有可能有多个线程同时去调用某一个servlet。此时，
+	有可能产生线程安全问题(比如，多个线程同时去
+	修改这个servlet的属性)。
+	(2)解决:
+		a,加锁
+			使用synchronized对有线程安全问题的代码加锁。
+		b,让servlet实现SingleThreadModel接口。容器
+		会为每一个线程分配一个对应的servlet实例。
+		该方式不建议使用(容器产生的servlet实例过多)。
+	
+			
+	
+	
+		
+	
+	
+	
+	
+	

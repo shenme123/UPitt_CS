@@ -1,0 +1,47 @@
+HTTP/1.1 200 OK
+Server: Apache-Coyote/1.1
+Set-Cookie: username=abc
+Content-Type: text/html;charset=utf-8
+Content-Length: 20
+Date: Sat, 18 Mar 2006 06:11:40 GMT
+
+
+GET /web07_cookie/find_cookie HTTP/1.1
+Host: localhost:8080
+User-Agent: Mozilla/5.0 (Windows NT 5.1; rv:8.0.1) Gecko/20100101 Firefox/8.0.1
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: zh-cn,zh;q=0.5
+Accept-Encoding: gzip, deflate
+Accept-Charset: GB2312,utf-8;q=0.7,*;q=0.7
+Connection: keep-alive
+Cookie: username=abc
+
+
+
+
+HTTP/1.1 200 OK
+Server: Apache-Coyote/1.1
+Set-Cookie: username=abc
+Set-Cookie: addr="beijing tarena"; Version=1
+Content-Type: text/html;charset=utf-8
+Content-Length: 20
+Date: Sat, 18 Mar 2006 06:31:10 GMT
+
+
+GET /web07_cookie/find_cookie HTTP/1.1
+Host: localhost:8080
+User-Agent: Mozilla/5.0 (Windows NT 5.1; rv:8.0.1) Gecko/20100101 Firefox/8.0.1
+Accept: text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8
+Accept-Language: zh-cn,zh;q=0.5
+Accept-Encoding: gzip, deflate
+Accept-Charset: GB2312,utf-8;q=0.7,*;q=0.7
+Connection: keep-alive
+Cookie: username=abc; addr="beijing tarena"
+
+
+
+
+
+
+
+

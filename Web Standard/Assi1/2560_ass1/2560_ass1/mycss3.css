@@ -1,0 +1,17 @@
+@charset "utf-8";
+
+a{
+	position:relative;
+	display:block;
+	}
+span{
+	display:none}
+a:hover{
+	cursor:pointer;
+	background:#88130D;
+	color:#fff;  }
+a:hover span{	
+display:block;
+padding:10px;
+border:0px;
+}

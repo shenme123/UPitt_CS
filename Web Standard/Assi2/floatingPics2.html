@@ -1,0 +1,99 @@
+<a href="http://www.zzjs.net/">站长特效网</a>,站长必备的高质量网页特效和广告代码。zzjs.net，站长js特效。<hr>
+<!--欢迎来到站长特效网，我们网站收集大量高质量js特效，提供许多广告代码下载，网址：www.zzjs.net，zzjs@msn.com,用.net打造靓站-->
+<script language="javascript">
+var images=Array();
+images.push("/img/200406301.jpg");
+images.push("/img/200406302.jpg");
+images.push("/img/200406303.jpg");
+images.push("/img/200406304.jpg");
+images.push("/img/200406305.jpg");
+images.push("/img/200406305.jpg");
+images.push("/img/200406304.jpg");
+images.push("/img/200406303.jpg");
+//Specify the slider's width (in pixels)
+var sliderwidth=695
+//Specify the slider's height
+var sliderheight=82
+//Specify the slider's slide speed (larger is faster 1-10)
+var slidespeed=1
+//configure background color:
+slidebgcolor="#fff"
+//Specify the slider's images
+var leftrightslide=new Array()
+var finalslide=''
+leftrightslide[0]='<table border="0"  cellspacing="13" cellpadding="0" width="695px" style="margin-top:-10px">'+'<tr align="center">';
+var size=images.length;
+for(var i=0;i<size;i++)
+	leftrightslide[0]+="<td width='80' height='62'><div onclick=\"window.open('"+images[i+1]+"');\" style=\"cursor:pointer;width:72px;height:62px;background:url("+images[i*2]+") no-repeat;\"><img src=\"/img/20070429204708_01.gif\" width=\"72\" height=\"62\" border=\"0\" /></div></td>";
+leftrightslide[0]+='</tr></table>';
+////NO NEED TO EDIT BELOW THIS LINE////////////
+var copyspeed=slidespeed
+leftrightslide='<nobr>'+leftrightslide.join(" ")+'</nobr>'
+var iedom=document.all||document.getElementById
+if (iedom)
+document.write('<span id="temp" style="visibility:hidden;position:absolute;top:0;left:0">'+leftrightslide+'</span>')
+var actualwidth=''
+var cross_slide, ns_slide
+function fillup(){
+	if (iedom){
+	cross_slide=document.getElementById? document.getElementById("test2") : document.all.test2
+	cross_slide2=document.getElementById? document.getElementById("test3") : document.all.test3
+	cross_slide.innerHTML=cross_slide2.innerHTML=leftrightslide
+	actualwidth=document.all? cross_slide.offsetWidth : document.getElementById("temp").offsetWidth
+	cross_slide2.style.left=actualwidth-5
+	}
+	else if (document.layers){
+	ns_slide=document.ns_slidemenu.document.ns_slidemenu2
+	ns_slide2=document.ns_slidemenu.document.ns_slidemenu3
+	ns_slide.document.write(leftrightslide)
+	ns_slide.document.close()
+	actualwidth=ns_slide.document.width
+	ns_slide2.left=actualwidth
+	ns_slide2.document.write(leftrightslide)
+	ns_slide2.document.close()
+	}
+	lefttime=setInterval("slideleft()",30)
+	}
+	window.onload=fillup
+	function slideleft(){
+	if (iedom){
+	if (parseInt(cross_slide.style.left)>(actualwidth*(-1)+8))
+	cross_slide.style.left=parseInt(cross_slide.style.left)-copyspeed
+	else
+	cross_slide.style.left=parseInt(cross_slide2.style.left)+actualwidth-5
+	if (parseInt(cross_slide2.style.left)>(actualwidth*(-1)+8))
+	cross_slide2.style.left=parseInt(cross_slide2.style.left)-copyspeed
+	else
+	cross_slide2.style.left=parseInt(cross_slide.style.left)+actualwidth-5
+	}
+	else if (document.layers){
+	if (ns_slide.left>(actualwidth*(-1)+8))
+	ns_slide.left-=copyspeed
+	else
+	ns_slide.left=ns_slide2.left+actualwidth
+	if (ns_slide2.left>(actualwidth*(-1)+8))
+	ns_slide2.left-=copyspeed
+	else
+	ns_slide2.left=ns_slide.left+actualwidth
+	}
+}
+if (iedom||document.layers){
+with (document){
+document.write('<table border="0" cellspacing="0" cellpadding="0"><td>')
+if (iedom){
+write('<div style="position:relative;width:'+sliderwidth+';height:'+sliderheight+';overflow:hidden">')
+write('<div style="position:absolute;width:'+sliderwidth+';height:'+sliderheight+';background-color:'+slidebgcolor+'" onMouseover="copyspeed=0" onMouseout="copyspeed=slidespeed">')
+write('<div id="test2" style="width:695px;position:absolute;left:0;top:0"></div>')
+write('<div id="test3" style="position:absolute;left:0;top:0;width:695px;"></div>')
+write('</div></div>')
+}
+else if (document.layers){
+write('<ilayer width='+sliderwidth+' height='+sliderheight+' name="ns_slidemenu" bgColor='+slidebgcolor+'>')
+write('<layer name="ns_slidemenu2" left=0 top=0 onMouseover="copyspeed=0" onMouseout="copyspeed=slidespeed"></layer>')
+write('<layer name="ns_slidemenu3" left=0 top=0 onMouseover="copyspeed=0" onMouseout="copyspeed=slidespeed"></layer>')
+write('</ilayer>')
+}
+document.write('</td></table>')
+}
+}
+</script>

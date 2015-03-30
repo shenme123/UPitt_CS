@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-module
+  type="WEB"
+  name="web07_cookie"
+  id="myeclipse.1142661809312"
+  context-root="/web07_cookie"
+  j2ee-spec="1.4"
+  archive="web07_cookie.war">
+  <attributes>
+    <attribute name="webrootdir" value="WebRoot" />
+  </attributes>
+</project-module>
+

@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- edited with XMLSpy v2013 (http://www.altova.com) by  () -->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
+	<!--personal info-->
+	<xs:attribute name="suffix" type="xs:string"/>
+	<xs:element name="name">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="first_name" type="xs:string"/>
+				<xs:element name="last_name" type="xs:string"/>
+				<xs:element name="middle_name" type="xs:string"/>
+			</xs:sequence>
+			<xs:attribute ref="suffix" use="optional"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="gender">
+		<xs:simpleType>
+			<xs:restriction base="xs:string">
+				<xs:enumeration value="male"/>
+				<xs:enumeration value="female"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="birth_date">
+		<xs:simpleType>
+			<xs:restriction base="xs:date">
+				<xs:minInclusive value="1900-01-01"/>
+				<xs:maxInclusive value="2013-01-01"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:element name="phone" type="xs:string"/>
+	<xs:simpleType name="code">
+		<xs:restriction base="xs:int">
+			<xs:minExclusive value="10000"/>
+			<xs:maxInclusive value="99999"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:attribute name="zipcode" type="code"/>
+	<xs:simpleType name="states">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="AL"/>
+			<xs:enumeration value="AK"/>
+			<xs:enumeration value="AZ"/>
+			<xs:enumeration value="AR"/>
+			<xs:enumeration value="CA"/>
+			<xs:enumeration value="CO"/>
+			<xs:enumeration value="CT"/>
+			<xs:enumeration value="DE"/>
+			<xs:enumeration value="FL"/>
+			<xs:enumeration value="GA"/>
+			<xs:enumeration value="HI"/>
+			<xs:enumeration value="PA"/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:element name="address">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="street" type="xs:string"/>
+				<xs:element name="city" type="xs:string"/>
+				<xs:element name="state" type="states"/>
+			</xs:sequence>
+			<xs:attribute ref="zipcode" use="required"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="Email" type="xs:string"/>
+	<xs:group name="personal_info">
+		<xs:sequence>
+			<xs:element ref="name"/>
+			<xs:element ref="gender"/>
+			<xs:element ref="birth_date"/>
+			<xs:element ref="phone"/>
+			<xs:element ref="address"/>
+			<xs:element ref="Email"/>
+		</xs:sequence>
+	</xs:group>
+	<xs:complexType name="basicInfoType">
+		<xs:group ref="personal_info"/>
+	</xs:complexType>
+	<xs:element name="basicInformation" type="basicInfoType"/>
+	<!--education-->
+	<xs:element name="start_date" type="xs:date"/>
+	<xs:element name="end_date" type="xs:date"/>
+	<xs:element name="school" type="xs:string"/>
+	<xs:element name="major" type="xs:string"/>
+	<xs:element name="GPA">
+		<xs:simpleType>
+			<xs:restriction base="xs:float">
+				<xs:minExclusive value="0"/>
+				<xs:maxInclusive value="4"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:element>
+	<xs:simpleType name="degreeType">
+		<xs:restriction base="xs:string">
+			<xs:enumeration value="B.S."/>
+			<xs:enumeration value="M.S."/>
+			<xs:enumeration value="Ph.D."/>
+		</xs:restriction>
+	</xs:simpleType>
+	<xs:attribute name="degree" type="degreeType"/>
+	<xs:complexType name="educationType">
+		<xs:sequence minOccurs="1">
+			<xs:element ref="school"/>
+			<xs:element ref="major"/>
+			<xs:element ref="GPA"/>
+			<xs:element ref="start_date"/>
+			<xs:element ref="end_date"/>
+		</xs:sequence>
+		<xs:attribute ref="degree" use="required"/>
+	</xs:complexType>
+	<xs:element name="educationInformation" type="educationType"/>
+	<!--working exp-->
+	<xs:attribute name="department" type="xs:string"/>
+	<xs:element name="company">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element name="comp_name" type="xs:string"/>
+			</xs:sequence>
+			<xs:attribute ref="department" use="optional"/>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="position" type="xs:string"/>
+	<xs:element name="job_discription" type="xs:string"/>
+	<xs:group name="working_info">
+		<xs:sequence>
+			<xs:element ref="company"/>
+			<xs:element ref="position"/>
+			<xs:element ref="job_discription"/>
+			<xs:element ref="start_date"/>
+			<xs:element ref="end_date"/>
+		</xs:sequence>
+	</xs:group>
+	<xs:complexType name="workType">
+		<xs:group ref="working_info"/>
+	</xs:complexType>
+	<xs:element name="workingInformation" type="workType"/>
+	<xs:element name="workingExperience">
+		<xs:complexType>
+			<xs:sequence minOccurs="1">
+				<xs:element ref="workingInformation"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<!--skills-->
+	<xs:simpleType name="skillType">
+		<xs:list itemType="xs:string"/>
+	</xs:simpleType>
+	<xs:element name="job_skills" type="skillType"/>
+	<xs:element name="software_skills" type="skillType"/>
+	<xs:group name="skills_info">
+		<xs:sequence>
+			<xs:element name="job_skills"/>
+			<xs:element name="software_skills"/>
+		</xs:sequence>
+	</xs:group>
+	<xs:element name="skills">
+		<xs:complexType>
+			<xs:group ref="skills_info"/>
+		</xs:complexType>
+	</xs:element>
+	<!--honors-->
+	<xs:element name="honor" type="xs:string"/>
+	<xs:element name="date" type="xs:date"/>
+	<xs:element name="organization" type="xs:string"/>
+	<xs:group name="honor_info">
+		<xs:sequence>
+			<xs:element ref="honor"/>
+			<xs:element ref="date"/>
+			<xs:element ref="organization"/>
+		</xs:sequence>
+	</xs:group>
+	<xs:complexType name="honorType">
+		<xs:sequence minOccurs="0">
+			<xs:group ref="honor_info"/>
+		</xs:sequence>
+	</xs:complexType>
+	<xs:element name="honors" type="honorType"/>
+	<xs:attribute name="applicationID">
+		<xs:simpleType>
+			<xs:restriction base="xs:int">
+				<xs:pattern value="[0-9][0-9][0-9][0-9][0-9][0-9][0-9]"/>
+			</xs:restriction>
+		</xs:simpleType>
+	</xs:attribute>
+	<xs:element name="resume">
+		<xs:complexType>
+			<xs:sequence minOccurs="1">
+				<xs:element ref="basicInformation"/>
+				<xs:element ref="educationInformation"/>
+				<xs:element ref="workingExperience"/>
+				<xs:element ref="skills"/>
+				<xs:element ref="honors"/>
+			</xs:sequence>
+			<xs:attribute ref="applicationID" use="required"/>
+		</xs:complexType>
+	</xs:element>
+</xs:schema>

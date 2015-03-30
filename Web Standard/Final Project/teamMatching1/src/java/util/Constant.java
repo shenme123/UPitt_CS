@@ -1,0 +1,20 @@
+package util;
+/**
+ * ����
+ * @author Rui Bi
+ *
+ */
+public final class Constant {
+
+	public final static int DEFAULT_ERROR=0;
+	public final static int SUCCESS=1;
+	public final static int FACULTY_LOGIN=10;
+	public final static int STUDENT_LOGIN=11;
+	public final static int NAME_ERROR=2;
+	public final static int PASSWORD_ERROR=3;
+	public final static int SYSTEM_ERROR=4;
+	public final static int SAME_NAME=5;
+	public final static int ERROR_STATUS=6;
+	public final static String NONAME_ERROR="noname_error";
+
+}

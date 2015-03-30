@@ -1,0 +1,1 @@
+<h1><a href="<%=response.encodeURL("count") %>">count</a></h1>

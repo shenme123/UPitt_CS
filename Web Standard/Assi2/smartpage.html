@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" 
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<title>Welcome to the gallary</title>
+<style>
+html {
+overflow: hidden;
+}
+body {
+position: absolute;
+height: 100%;
+width: 100%;
+margin:0;
+padding:0;
+}
+#screen {
+position: absolute;
+width: 100%;
+height: 100%;
+}
+#screen span {
+background: #335577;
+font-size: 0;
+overflow: hidden;
+width: 2px;
+height: 2px;
+}
+*{ margin:0; padding:0; list-style:none}
+body{ font-family:Arial, Helvetica, sans-serif; font-size:14px; line-height:2;}
+img{ display:block; border:0;}
+h1,h2{ background:#85B829; line-height:2.5; font-size:16px; padding-left:10px; color:#fff;}
+#divi{ border-left:3px solid #468C50; border-right:3px solid #99CC99; background:#B5DF63; float:left; width:850px;}
+li{ float:left;}
+a{ display:block; background:#fff; border:1px solid #A4D742; text-align:center; color:#598628; text-decoration:none; padding:5px; margin:15px;}
+a:hover,a:active{ background:#99CC33; border:1px solid #85B829; border-left:1px solid #fff; border-top:1px solid #fff; color:#fff}
+#showpic{ border:1px solid #85B829; padding:5px; display:none; clear:left; background:#FFF; text-align: center}
+ul,#showpic{ margin:10px;}
+h2{ color:#598628; background:none; text-align:left}
+#showpic img{ margin:auto}
+</style>
+</head>
+<body>
+<div id="divi">
+<h1>Welcome to the gallary</h1>
+<ul>
+	<li><a href="Image/F1l.jpg" title="Name1"><img src="Image/F1s.jpg" />Flower1</a></li>
+	<li><a href="Image/F2l.jpg" title="Name2"><img src="Image/F2s.jpg" />Flower2</a></li>
+	<li><a href="Image/F3l.jpg" title="Name3"><img src="Image/F3s.jpg" />Flower3</a></li>
+	<li><a href="Image/F4l.jpg" title="Name4"><img src="Image/F4s.jpg" />Flower4</a></li>
+	<li><a href="Image/F5l.jpg" title="Name5"><img src="Image/F5s.jpg" />Flower5</a></li>
+	<li><a href="Image/F6l.jpg" title="Name6"><img src="Image/F6s.jpg" />Flower6</a></li>
+	<li><a href="Image/F7l.jpg" title="Name7"><img src="Image/F7s.jpg" />Flower7</a></li>
+	<li><a href="Image/F8l.jpg" title="Name8"><img src="Image/F8s.jpg" />Flower8</a></li>
+	<li><a href="Image/F9l.jpg" title="Name9"><img src="Image/F9s.jpg" />Flower9</a></li>
+	<li><a href="Image/F10l.jpg" title="Name10"><img src="Image/F10s.jpg" />Flower10</a></li>
+</ul>
+</div>
+<script language="javascript">
+
+
+var Follow = function () {
+var $ = function (i) {return document.getElementById(i)},
+addEvent = function (o, e, f) {o.addEventListener ? o.addEventListener(e, f, false) : o.attachEvent('on'+e, function(){f.call(o)})},
+OBJ = [], sp, rs, N = 0, m;
+var init = function (id, config) {
+this.config = config || {};
+this.obj = $(id);
+sp = this.config.speed || 4;
+rs = this.config.animR || 1;
+m = {x: $(id).offsetWidth * .5, y: $(id).offsetHeight * .5};
+this.setXY();
+this.start();
+}
+init.prototype = {
+setXY : function () {
+var _this = this;
+addEvent(this.obj, 'mousemove', function (e) {
+e = e || window.event;
+m.x = e.clientX;
+m.y = e.clientY;
+})
+},
+start : function () {
+var k = 180 / Math.PI, OO, o, _this = this, fn = this.config.fn;
+OBJ[N++] = OO = new CObj(null, 0, 0);
+for(var i=0;i<360;i+=20){
+var O = OO;
+for(var j=10; j<35; j+=1){
+var x = fn(i, j).x,
+y = fn(i, j).y;
+OBJ[N++] = o = new CObj(O , x, y);
+O = o;
+}
+}
+setInterval(function() {
+for (var i = 0; i < N; i++) OBJ[i].run();
+}, 16);
+}
+}
+var CObj = function (p, cx, cy) {
+var obj = document.createElement("span");
+this.css = obj.style;
+this.css.position = "absolute";
+this.css.left = "-1000px";
+this.css.zIndex = 1000 - N;
+document.getElementById("screen").appendChild(obj);
+this.ddx = 0;
+this.ddy = 0;
+this.PX = 0;
+this.PY = 0;
+this.x = 0;
+this.y = 0;
+this.x0 = 0;
+this.y0 = 0;
+this.cx = cx;
+this.cy = cy;
+this.parent = p;
+}
+CObj.prototype.run = function () {
+if (!this.parent) {
+this.x0 = m.x;
+this.y0 = m.y;
+} else {
+this.x0 = this.parent.x;
+this.y0 = this.parent.y;
+}
+this.x = this.PX += (this.ddx += ((this.x0 - this.PX - this.ddx) + this.cx) / rs) / sp;
+this.y = this.PY += (this.ddy += ((this.y0 - this.PY - this.ddy) + this.cy) / rs) / sp;
+this.css.left = Math.round(this.x) + 'px';
+this.css.top = Math.round(this.y) + 'px';
+}
+return init;
+}();
+</script></head>
+<body>
+<div id="screen"></div>
+<script type="text/javascript">
+new Follow('screen', {speed: 4,
+animR : 2,
+fn : function (i, j) {
+return {
+x : j/4*Math.cos(i),
+y : j/4*Math.sin(i)
+}
+}})
+
+
+	function setDiv(){
+		var obj1 = document.getElementById("divi");
+		var showpic = document.createElement("div");
+		showpic.setAttribute("id", "showpic");
+		obj1.appendChild(showpic);
+		showpic.appendChild(document.createElement("h2"));
+		showpic.appendChild(document.createElement("img"));
+		var links = obj1.getElementsByTagName("a");
+		for(var k=0; k<links.length; k++){
+			links[k].onclick = function(){
+				return showPic(this);
+			}
+		}
+	}
+	function showPic(pic){
+		var showpic = document.getElementById("showpic");
+		showpic.style.display = "block";
+		showpic.getElementsByTagName("h2")[0].innerHTML = pic.title;
+		showpic.getElementsByTagName("img")[0].setAttribute("src", pic.href);
+		return false;
+	}
+	
+	window.onload = setDiv();
+</script>
+</body>
+</html>

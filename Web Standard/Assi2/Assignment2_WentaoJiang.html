@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" 
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+<title>Welcome to the gallary</title>
+<style type="text/css">
+*{ margin:0; padding:0; list-style:none}
+body{ font-family:Arial, Helvetica, sans-serif; font-size:14px; line-height:2;}
+img{ display:block; border:0;}
+h1,h2{ background:#85B829; line-height:2.5; font-size:16px; padding-left:10px; color:#fff;}
+#divi{ border-left:3px solid #468C50; border-right:3px solid #99CC99; background:#B5DF63; float:left; width:850px;}
+li{ float:left;}
+a{ display:block; background:#fff; border:1px solid #A4D742; text-align:center; color:#598628; text-decoration:none; padding:5px; margin:15px;}
+a:hover,a:active{ background:#99CC33; border:1px solid #85B829; border-left:1px solid #fff; border-top:1px solid #fff; color:#fff}
+#showpic{ border:1px solid #85B829; padding:5px; display:none; clear:left; background:#FFF; text-align: center}
+ul,#showpic{ margin:10px;}
+h2{ color:#598628; background:none; text-align:left}
+#showpic img{ margin:auto}
+</style>
+</head>
+<body>
+<div id="divi">
+<h1>Welcome to the gallary</h1>
+<h2>Click on the pictures to see large ones (If no click is excuted, the pictures will be presented one by one.)</h2>
+<ul>
+	<li><a href="Image/F1l.jpg" title="Name1"><img src="Image/F1s.jpg" alt="Flower1"/>Flower1</a></li>
+	<li><a href="Image/F2l.jpg" title="Name2"><img src="Image/F2s.jpg" alt="Flower2"/>Flower2</a></li>
+	<li><a href="Image/F3l.jpg" title="Name3"><img src="Image/F3s.jpg" alt="Flower3"/>Flower3</a></li>
+	<li><a href="Image/F4l.jpg" title="Name4"><img src="Image/F4s.jpg" alt="Flower4"/>Flower4</a></li>
+	<li><a href="Image/F5l.jpg" title="Name5"><img src="Image/F5s.jpg" alt="Flower5"/>Flower5</a></li>
+	<li><a href="Image/F6l.jpg" title="Name6"><img src="Image/F6s.jpg" alt="Flower6"/>Flower6</a></li>
+	<li><a href="Image/F7l.jpg" title="Name7"><img src="Image/F7s.jpg" alt="Flower7"/>Flower7</a></li>
+	<li><a href="Image/F8l.jpg" title="Name8"><img src="Image/F8s.jpg" alt="Flower8"/>Flower8</a></li>
+	<li><a href="Image/F9l.jpg" title="Name9"><img src="Image/F9s.jpg" alt="Flower9"/>Flower9</a></li>
+	<li><a href="Image/F10l.jpg" title="Name10"><img src="Image/F10s.jpg" alt="Flower10"/>Flower10</a></li>
+</ul>
+</div>
+<script type="text/javascript" language="javascript">
+    var auto_slice = true;
+	function setDiv(){
+		var obj1 = document.getElementById("divi");
+		var showpic = document.createElement("div");
+		showpic.setAttribute("id", "showpic");
+		obj1.appendChild(showpic);
+		showpic.appendChild(document.createElement("h2"));
+		showpic.appendChild(document.createElement("img"));
+		var links = obj1.getElementsByTagName("a");
+		for(var k=0; k<links.length; k++){
+			links[k].onclick = function(){
+			    showPic(this);
+			    return false;
+			}
+		}
+		var i = 0;
+		setInterval(function () {
+		    if (auto_slice) {
+		        var pic = links[i++];
+		        var showpic = document.getElementById("showpic");
+		        showpic.style.display = "block";
+		        showpic.getElementsByTagName("h2")[0].innerHTML = pic.title;
+		        showpic.getElementsByTagName("img")[0].setAttribute("src", pic.href);
+		    }
+		}, 1000);
+	}
+	function showPic(pic) {
+	    auto_slice = false;
+		var showpic = document.getElementById("showpic");
+		showpic.style.display = "block";
+		showpic.getElementsByTagName("h2")[0].innerHTML = pic.title;
+		showpic.getElementsByTagName("img")[0].setAttribute("src", pic.href);
+		return false;
+	}
+	
+	window.onload = setDiv();
+</script>
+</body>
+</html>

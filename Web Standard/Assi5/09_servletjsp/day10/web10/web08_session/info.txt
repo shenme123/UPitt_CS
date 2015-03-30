@@ -1,0 +1,6 @@
+HTTP/1.1 200 OK
+Server: Apache-Coyote/1.1
+Set-Cookie: JSESSIONID=AED55F017EF6041AB1FF1A2DCC39AB20; Path=/web08_session
+Content-Type: text/html;charset=utf-8
+Content-Length: 23
+Date: Thu, 23 Mar 2006 01:46:50 GMT
