@@ -1,0 +1,34 @@
+import java.io.*;
+import java.util.*;
+
+/** Demonstrate the Scanner class for input of numbers.**/
+public class  ConsoleIO
+{
+	public static void main (String arg[])
+	{
+
+		// Create a scanner to read from keyboard
+		Scanner kbd = new Scanner (System.in);
+
+
+		System.out.print("Enter an int (e.g.3501): ");
+		int int_val = kbd.nextInt ();
+		System.out.println(" You entered " + int_val +"\n");
+
+		System.out.print("Enter a float (e.g. 3.14): " );
+		float float_val = kbd.nextFloat ();
+		System.out.println (" You entered " + float_val +"\n");
+
+		System.out.print("Enter double (e.g. 4.943e15): ");
+		double double_val = kbd.nextDouble ();
+
+		System.out.println(" You entered " + double_val +"\n");
+
+   		System.out.print("Enter any string ( e.g your name): ");
+   		String s = kbd.next();
+
+   		System.out.println(" You entered " + s +"\n");
+
+
+	} // END main
+} // END class ConsolIO

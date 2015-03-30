@@ -1,0 +1,66 @@
+1) These 3 are NOT primitives: (d) String  (e) Integer  (f) Scanner
+
+2) These operators can short circuit    ||   &&
+
+3) main method 
+	
+4) in the args array
+   	
+5) (a) by  their parameter lists differing at any position
+   (b) first one
+
+
+6) for loop increments i regardless of whether an element was inserted at arr[i]
+   thus a dupe is rejected crrectly but that slot is skipped over and not filled 
+	
+7) (a) the contains() method is the bug
+   (b) bug is using == to compare Strings. Must use .equals() 
+   (c) Because hardcoded String literals are pooled, identical strings share the same address 
+   (d) If we would have "new"'d the Strings like this:
+	  String[] database ={ new String("foo"), new String("bar"), etc. etc. };
+       or read the Strings in from a file they would not have been pooled.
+       Hardcoding them causes them to be pooled.
+
+8) 0 1 2 3 4 5 6 7 8 9   // The reInitArr method had no affect on main's arr
+	
+
+9) (a) Crashes on line number?  7
+   (b) On the DOT after arr
+   (c) arr is a null array refrence. initArr had no effect
+
+10) Output is "Hello World"   
+	
+	that call .toUpperCase does not modify the String. 
+	It creates a separate copy of a String with its letter capitolized
+	
+11) "immutable" objects cannot be modified once their value has been initialied. 
+    Kinda like "final".	
+
+12) Swap method fails becasue it only operates on local copies. 
+    Whatever you pass into it is not modified.
+	
+13) Making a copy of all the aray's data elements would be bruatlly expensive and slow.
+    You would run out of memory very quickly passing around huge arrays.
+         
+14) (a) int get 0
+    (b) boolean get false
+    (c) String get null  ( not same as "" empty String)
+	
+15) It just hands off a copy of the String's address (reference)
+      
+16) local variables in a block are destroyed/recycled once that block exits
+	
+17) That original chunk of 5 gets destroyed/recycled by the garbage collector
+	
+18) The second diagram:
+	words: [-]----> 0 [-]----->"foo"
+  	                1 [-]----->"bar"
+                        2 [-]----->"baz"
+	Becasue the array is an array of refs to String not an array of String data
+
+19) binary search is superior since it requires only log2N comparisons versus N comparisons.
+	
+20) ArrayList keeps track of count for you
+    ArrayList automatically resizes itself when it gets full
+    ArrayList automatically closes up the gap when you delete an element from the middle
+    several other advantages.

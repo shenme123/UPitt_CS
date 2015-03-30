@@ -1,0 +1,4 @@
+length of longest String: 28
+length of shortest String: 2
+total number of Strings read/stored: 172822
+final length (capacity) of wordList: 204800

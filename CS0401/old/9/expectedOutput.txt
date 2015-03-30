@@ -1,0 +1,16 @@
+
+RANDOM:
+77  21  95  17  93  94  5   16  63  9   64  96  51  22  49  59  8   54  28  48  
+BUBBLESORTED:
+5   8   9   16  17  21  22  28  48  49  51  54  59  63  64  77  93  94  95  96  
+RANDOM:
+58  20  69  38  71  36  75  31  15  4   22  62  39  5   63  29  98  46  100 73  
+SELECTIONSORTED:
+4   5   15  20  22  29  31  36  38  39  46  58  62  63  69  71  73  75  98  100 
+
+Number to search for: 4 FOUND at index 0
+Number to search for: 10 NOT found.
+Number to search for: 46 FOUND at index 10
+Number to search for: 17 NOT found.
+Number to search for: 66 NOT found.
+Number to search for: 

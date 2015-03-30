@@ -1,0 +1,5 @@
+STATINS,lipitor crestor zocor lipex
+THINNERS,coumadin plavix aspirin
+ANTI_COAG,asparagus broccoli cabbage endive soybeans
+ANTI_INFLAM,aspirin motrin ibuprofen
+ED_MEDS,cialis viagra

@@ -1,0 +1,860 @@
+.data
+	rand1:		.word	0
+	rand2:		.word	0
+	rand3:		.word	0
+	rand4:		.word	0
+	rand5:		.word	0
+	rand6:		.word	0
+	clearFrog:	.space	16
+	clearFrog2:	.space	16
+	inifrog:	.space	16
+	inilava:	.space	16
+	inilily:	.space	16
+	updatefrog:	.space	16
+	moveincolor:	.space	8
+	oldfrog:	.space	16
+	stone1:		.space	20
+	stone3:		.space	20
+	stone5:		.space	20
+	stone2:		.space	20
+	stone4:		.space	20
+	stone6:		.space	20
+	stone1_2nd:	.space	20
+	stone3_2nd:	.space	20
+	stone5_2nd:	.space	20
+	stone2_2nd:	.space	20
+	stone4_2nd:	.space	20
+	stone6_2nd:	.space	20
+	pscore:		.asciiz	"Your score is: "
+
+.text
+	li	$s3, 3		#### lifes
+	li	$s4, 0		#### score
+	
+	la	$s0, clearFrog		# clearFrog
+	li	$s1, 0
+	sw	$s1, 0($s0)
+	li	$s1, 64
+	sw	$s1, 8($s0)
+	li	$s1, 6
+	sw	$s1, 4($s0)
+	li	$s1, 8
+	sw	$s1, 12($s0)
+	
+	la	$s0, clearFrog2		# clearFrog
+	li	$s1, 0
+	sw	$s1, 0($s0)
+	li	$s1, 64
+	sw	$s1, 8($s0)
+	li	$s1, 56
+	sw	$s1, 4($s0)
+	li	$s1, 64
+	sw	$s1, 12($s0)
+start:
+  	li	$a1, 47
+  	li	$v0, 42
+  	syscall
+  	addi	$a0, $a0, 15
+  	sw	$a0, rand1
+  	
+  	syscall
+  	addi	$a0, $a0, 3
+  	sw	$a0, rand2
+  	
+  	syscall
+  	addi	$a0, $a0, 15
+  	sw	$a0, rand3
+  	
+  	syscall
+  	addi	$a0, $a0, 3
+  	sw	$a0, rand4
+  	
+  	syscall
+  	addi	$a0, $a0, 15
+  	sw	$a0, rand5
+  	
+  	syscall
+  	addi	$a0, $a0, 3
+  	sw	$a0, rand6
+################## initial unchange blocks ############
+	# clear frog
+	li	$a2, 0
+	la	$a0, clearFrog
+	jal	_setBlock
+	
+	li	$a2, 0
+	la	$a0, clearFrog2
+	jal	_setBlock
+	
+	# inifrog
+	li	$a2, 3
+	la	$a0, inifrog
+	li	$s1, 31
+	sw	$s1, 0($a0)
+	li	$s1, 56
+	sw	$s1, 4($a0)
+	li	$s1, 33
+	sw	$s1, 8($a0)
+	li	$s1, 58
+	sw	$s1, 12($a0)
+	
+	jal	_setBlock
+	# inilava	
+	li	$a2, 1
+	la	$a0, inilava
+	li	$s1, 0
+	sw	$s1, 0($a0)
+	li	$s1, 8
+	sw	$s1, 4($a0)
+	li	$s1, 64
+	sw	$s1, 8($a0)
+	li	$s1, 56
+	sw	$s1, 12($a0)
+	
+	jal	_setBlock
+	# inilily1
+	li	$a2, 3
+	la	$a0, inilily
+	li	$s1, 0
+	sw	$s1, 0($a0)
+	li	$s1, 6
+	sw	$s1, 4($a0)
+	li	$s1, 6
+	sw	$s1, 8($a0)
+	li	$s1, 8
+	sw	$s1, 12($a0)	
+	jal	_setBlock	
+	# inilily2
+	li	$a2, 3
+	la	$a0, inilily
+	li	$s1, 29
+	sw	$s1, 0($a0)
+	li	$s1, 35
+	sw	$s1, 8($a0)
+	jal	_setBlock	
+	# inilily3
+	li	$a2, 3
+	la	$a0, inilily
+	li	$s1, 58
+	sw	$s1, 0($a0)
+	li	$s1, 64
+	sw	$s1, 8($a0)		
+	jal	_setBlock
+################# done initial unchange blocks #######################
+
+	# move frog
+	li	$s0, 31						# occupied : s0, s1
+	li	$s1, 56
+
+################# initial stones ####################################	
+	
+	la	$a0, stone1	##### initial stone 1
+	li	$a1, 8
+	jal	_initialStone	
+	la	$a0, stone3	##### initial stone 3
+	li	$a1, 24
+	jal	_initialStone	
+	la	$a0, stone5	##### initial stone 5
+	li	$a1, 40
+	jal	_initialStone
+	la	$a0, stone2	##### initial stone 2
+	li	$a1, 16
+	jal	_initialStone
+	la	$a0, stone4	##### initial stone 4
+	li	$a1, 32
+	jal	_initialStone
+	la	$a0, stone6	##### initial stone 6
+	li	$a1, 48
+	jal	_initialStone
+	
+	### initial 2nd stone 1
+	la	$s2, stone1_2nd
+	li	$s5, 64
+	sw	$s5, 0($s2)
+	sw	$s5, 8($s2)
+	li	$s5, 8
+	sw	$s5, 4($s2)
+	addi	$s5, $s5, 8
+	sw	$s5, 12($s2)
+	li	$s5, 8
+	sw	$s5, 16($s2)
+	
+	### initial 2nd stone 3
+	la	$s2, stone3_2nd
+	li	$s5, 64
+	sw	$s5, 0($s2)
+	sw	$s5, 8($s2)
+	li	$s5, 24
+	sw	$s5, 4($s2)
+	addi	$s5, $s5, 8
+	sw	$s5, 12($s2)
+	li	$s5, 8
+	sw	$s5, 16($s2)
+	
+	### initial 2nd stone 5
+	la	$s2, stone5_2nd
+	li	$s5, 64
+	sw	$s5, 0($s2)
+	sw	$s5, 8($s2)
+	li	$s5, 40
+	sw	$s5, 4($s2)
+	addi	$s5, $s5, 8
+	sw	$s5, 12($s2)
+	li	$s5, 8
+	sw	$s5, 16($s2)
+	
+	### initial 2nd stone 2
+	la	$s2, stone2_2nd
+	sw	$0, 0($s2)
+	sw	$0, 8($s2)
+	li	$s5, 16
+	sw	$s5, 4($s2)
+	addi	$s5, $s5, 8
+	sw	$s5, 12($s2)
+	li	$s5, 8
+	sw	$s5, 16($s2)
+	
+	### initial 2nd stone 4
+	la	$s2, stone4_2nd
+	sw	$0, 0($s2)
+	sw	$0, 8($s2)
+	li	$s5, 32
+	sw	$s5, 4($s2)
+	addi	$s5, $s5, 8
+	sw	$s5, 12($s2)
+	li	$s5, 8
+	sw	$s5, 16($s2)
+	
+	### initial 2nd stone 6
+	la	$s2, stone6_2nd
+	sw	$0, 0($s2)
+	sw	$0, 8($s2)
+	li	$s5, 48
+	sw	$s5, 4($s2)
+	addi	$s5, $s5, 8
+	sw	$s5, 12($s2)
+	li	$s5, 8
+	sw	$s5, 16($s2)
+	
+##################### done initial stones ##########################
+
+loop:
+	move	$a0, $s0		# don't use s0 & s1 later on.
+	move	$a1, $s1
+
+	jal	_getKeyPress
+#	li	$v0, 224	########for test
+	beq	$v0, $0, wait
+	move	$a2, $v0
+	li	$a3, 2
+	jal	_moveFrog
+	move	$s0, $v0
+	move	$s1, $v1
+  wait:	
+	li	$v0, 32		# wait for 200ms
+	li	$a0, 200
+	syscall
+	
+	la	$a1, -1
+	la	$a0, stone1	
+	jal	_updateStone
+########################################	
+##					##
+	la	$s2, stone1
+	lw	$s5, 8($s2)
+	lw	$s2, rand1
+	bne	$s5, $s2, updateStone1_2nd
+	# generate stone1_2nd
+	li	$a1, 10
+	li	$v0, 42
+	syscall
+	bne	$a0, 0, updateStone1_2nd
+	la	$a1, -1
+	la	$a0, stone1_2nd
+	jal	_updateStone
+	
+  updateStone1_2nd:
+  	la	$a0, stone1_2nd
+  	lw	$s2, 0($a0)
+  	lw	$s5, 8($a0)
+  	beq	$s2, 64, genRand1
+  	li	$a1, -1
+  	jal	_updateStone
+  	j	nextStone_1
+  genRand1:
+  	li	$a1, 47
+  	li	$v0, 42
+  	syscall
+  	addi	$a0, $a0, 15
+  	sw	$a0, rand1
+  	
+##					##
+###########################################  	
+  nextStone_1:	
+	la	$a1, -1
+	la	$a0, stone3
+	jal	_updateStone
+	
+########################################	
+##					##
+	la	$s2, stone3
+	lw	$s5, 8($s2)
+	lw	$s2, rand3
+	bne	$s5, $s2, updateStone3_2nd
+	# generate stone1_2nd
+	li	$a1, 10
+	li	$v0, 42
+	syscall
+	bne	$a0, 0, updateStone3_2nd
+	la	$a1, -1
+	la	$a0, stone3_2nd
+	jal	_updateStone
+	
+  updateStone3_2nd:
+  	la	$a0, stone3_2nd
+  	lw	$s2, 0($a0)
+  	lw	$s5, 8($a0)
+  	beq	$s2, 64, genRand3
+  	li	$a1, -1
+  	jal	_updateStone
+  	j	nextStone_2
+  genRand3:
+  	li	$a1, 47
+  	li	$v0, 42
+  	syscall
+  	addi	$a0, $a0, 15
+  	sw	$a0, rand3
+  	
+##					##
+###########################################  	
+  nextStone_2:	
+	la	$a1, -1
+	la	$a0, stone5
+	jal	_updateStone
+
+########################################	
+##					##
+	la	$s2, stone5
+	lw	$s5, 8($s2)
+	lw	$s2, rand5
+	bne	$s5, $s2, updateStone5_2nd
+	# generate stone1_2nd
+	li	$a1, 10
+	li	$v0, 42
+	syscall
+	bne	$a0, 0, updateStone5_2nd
+	la	$a1, -1
+	la	$a0, stone5_2nd
+	jal	_updateStone
+	
+  updateStone5_2nd:
+	la	$a0, stone5_2nd
+	lw	$s2, 0($a0)
+	lw	$s5, 8($a0)
+	beq	$s2, 64, genRand5
+	li	$a1, -1
+	jal	_updateStone
+	j	nextStone_3
+  genRand5:
+	li	$a1, 47
+	li	$v0, 42
+	syscall
+	addi	$a0, $a0, 15
+	sw	$a0, rand5
+  	
+##					##
+###########################################  	
+  nextStone_3:			
+	la	$a1, 1
+	la	$a0, stone2
+	jal	_updateStone
+
+########################################	
+##					##
+	la	$s2, stone2
+	lw	$s5, 0($s2)
+	lw	$s2, rand2
+	bne	$s5, $s2, updateStone2_2nd
+	# generate stone1_2nd
+	li	$a1, 10
+	li	$v0, 42
+	syscall
+	bne	$a0, 0, updateStone2_2nd
+	la	$a1, 1
+	la	$a0, stone2_2nd
+	jal	_updateStone
+	
+  updateStone2_2nd:
+	la	$a0, stone2_2nd
+	lw	$s2, 0($a0)
+	lw	$s5, 8($a0)
+	beq	$s5, 0, genRand2
+	li	$a1, 1
+	jal	_updateStone
+	j	nextStone_4
+  genRand2:
+	li	$a1, 47
+	li	$v0, 42
+	syscall
+	addi	$a0, $a0, 3
+	sw	$a0, rand2
+##					##
+###########################################  	
+  nextStone_4:		
+	la	$a1, 1
+	la	$a0, stone4
+	jal	_updateStone
+
+########################################	
+##					##
+	la	$s2, stone4
+	lw	$s5, 0($s2)
+	lw	$s2, rand4
+	bne	$s5, $s2, updateStone4_2nd
+	# generate stone1_2nd
+	li	$a1, 10
+	li	$v0, 42
+	syscall
+	bne	$a0, 0, updateStone4_2nd
+	la	$a1, 1
+	la	$a0, stone4_2nd
+	jal	_updateStone
+	
+  updateStone4_2nd:
+	la	$a0, stone4_2nd
+	lw	$s2, 0($a0)
+	lw	$s5, 8($a0)
+	beq	$s5, 0, genRand4
+	li	$a1, 1
+	jal	_updateStone
+	j	nextStone_5
+  genRand4:
+	li	$a1, 47
+	li	$v0, 42
+	syscall
+	addi	$a0, $a0, 3
+	sw	$a0, rand4
+##					##
+###########################################  	
+  nextStone_5:		
+	la	$a1, 1
+	la	$a0, stone6
+	jal	_updateStone
+
+########################################	
+##					##
+	la	$s2, stone6
+	lw	$s5, 0($s2)
+	lw	$s2, rand6
+	bne	$s5, $s2, updateStone6_2nd
+	# generate stone1_2nd
+	li	$a1, 10
+	li	$v0, 42
+	syscall
+	bne	$a0, 0, updateStone6_2nd
+	la	$a1, 1
+	la	$a0, stone6_2nd
+	jal	_updateStone
+	
+  updateStone6_2nd:
+	la	$a0, stone6_2nd
+	lw	$s2, 0($a0)
+	lw	$s5, 8($a0)
+	beq	$s5, 0, genRand6
+	li	$a1, 1
+	jal	_updateStone
+	j	nextStone_6
+  genRand6:
+	li	$a1, 47
+	li	$v0, 42
+	syscall
+	addi	$a0, $a0, 3
+	sw	$a0, rand6
+##					##
+###########################################  	
+  nextStone_6:		
+	move	$a0, $s0
+	move	$a1, $s1
+	
+	bgt	$s1, 54, noshift
+	bgt	$s1, 46, shiftright	
+	
+  	bgt	$s1, 38, shiftleft
+  	bgt	$s1, 30, shiftright
+
+  	bgt	$s1, 22, shiftleft
+  	bgt	$s1, 14, shiftright
+
+  	bgt	$s1, 6, shiftleft
+  	j	loop
+  	
+
+shiftright:	
+	li	$a2, 227
+	j	shift
+shiftleft:
+	li	$a2, 226
+shift:
+	li	$a3, 1
+	jal	_moveFrog
+	move	$s0, $v0
+	move	$s1, $v1
+noshift:	
+	j	loop
+	
+dead:	
+	addi	$s3, $s3, -1
+	beq	$s3, 0, print
+	li	$v0, 32
+	li	$a0, 2000
+	syscall
+	j	start
+	
+win:	
+	addi	$s4, $s4, 100
+	j	start
+print:
+	la	$a0, pscore
+	li	$v0, 4
+	syscall
+	move	$a0, $s4
+	li	$v0, 1
+	syscall
+exit:
+	li	$v0, 10
+	syscall	
+
+
+
+
+
+
+
+
+
+
+############### _initial2ndStone ##########
+	# void _initial2ndStone (int [] block, int row)
+	# a0 = address of block, a1 = row
+
+############### _initialStone #############
+	# void _initialStone (int[] block, int row)
+	# a0 = address of block, a1 = row
+_initialStone:
+	move	$t8, $a0	# t8: stone
+	move	$t9, $a1	# t9: row
+	
+	li	$a1, 5		# gen lehgth
+	li	$v0, 42
+	syscall
+	addi	$t7, $a0, 8	# $t7: stone length
+	li	$a1, 54
+	syscall
+	move	$t6, $a0	# $t6: gen start position
+	move	$a0, $t8	# initial stone x and y
+	sw	$t7, 16($a0)
+	sw	$t6, 0($a0)
+	add	$t6, $t6, $t7
+	sw	$t6, 8($a0)
+	sw	$t9, 4($a0)
+	addi	$t9, $t9, 8
+	sw	$t9, 12($a0)	
+
+############### _updateStone ##############
+	# void _updatdStone (int[] block, int direction)
+	# a0 = address of block, a1 = direction
+_updateStone:
+	addi	$sp, $sp, -8
+	sw	$ra, 0($sp)
+	sw	$a1, 4($sp)
+	
+	move	$t8, $a0
+	li	$a2, 1
+	jal	_setBlock
+	move	$a0, $t8
+	lw	$t4, 0($t8)	# t4: x1
+	lw	$t5, 16($t8)	# t5: length
+	lw	$t6, 8($t8)	# t6: x2
+	
+	lw	$a1, 4($sp)
+	bne	$a1, -1, right
+	bne	$t6, 0, move_left
+	li	$t9, 64
+	sw	$t9, 0($t8)
+	sw	$t9, 8($t8)
+	j	gen_rand
+  right:
+	bne	$t4, 63, move_right
+	sw	$0, 0($t8)
+	sw	$0, 8($t8)
+  gen_rand:
+	li	$a1, 5		# gen random
+	li	$v0, 42
+	syscall
+	addi	$t2, $a0, 8	# stone length
+	move	$a0, $t8	# initial stone x and y
+	sw	$t2, 16($a0)
+	j	us_return		
+  move_left:
+  	li	$t9, 64
+  	sub	$t9, $t9, $t4
+  	blt	$t9, $t5, no_x2changeL
+  	addi	$t6, $t6, -1
+  	sw	$t6, 8($t8)
+  no_x2changeL:
+  	beq	$t4, 0, no_x2changeR
+  	addi	$t4, $t4, -1
+  	sw	$t4, 0($t8)
+  	j	no_x2changeR
+  	
+  move_right:
+	blt	$t6, $t5, no_x1changeR
+#	blt	$t4, 1, no_x1change
+	addi	$t4, $t4, 1
+	sw	$t4, 0($t8)
+  no_x1changeR:
+ 	beq 	$t6, 64, no_x2changeR
+  	addi	$t6, $t6, 1
+  	sw	$t6, 8($t8)
+  no_x2changeR:
+  	li	$a2, 2
+  	jal	_setBlock
+  	move	$v0, $t4
+  	move	$v1, $t6
+  us_return:	
+  	lw	$ra, 0($sp)
+  	addi	$sp, $sp, 8
+  	jr	$ra
+	
+	
+############### _moveFrog  ###############
+	# (int newx, int newy) _moveFrog(int x, int y, in key, int dist)
+	# $a0 = x, $a1 = y, $a2 = key, $a3 = dist
+_moveFrog:
+	addi	$sp, $sp, -12	# stack
+	sw	$ra, 0($sp)
+	sw	$a0, 4($sp)
+	sw	$a1, 8($sp)
+	
+	la	$t1, oldfrog
+	move	$t2, $a0
+	sw	$t2, 0($t1)
+	addi	$t2, $t2, 2
+	sw	$t2, 8($t1)
+	move	$t2, $a1
+	sw	$t2, 4($t1)
+	addi	$t2, $t2, 2
+	sw	$t2, 12($t1)	
+	
+	bne	$a2, 227, notRight	# isRight?
+	add	$t1, $a0, $a3		
+	bgt	$t1, 62, dead
+	j	moveFrog
+  notRight:
+  	bne	$a2, 226, notLeft	# isLeft?
+  	sub	$t1, $a0, $a3
+  	blt	$t1, 0, dead
+  	j	moveFrog
+  notLeft:	
+  	bne	$a2, 225, notDown	# isDown?
+  	bne	$a1, 62, newxyd
+  	move	$v0, $a0
+  	move	$v1, $a1
+  	j	moveReturn
+    newxyd:
+    	move	$t1, $a0
+    	addi	$a1, $a1, 2
+    	j	moveFrog
+  notDown:
+    	bne	$a2, 224, notUp		# isUp?
+  	bne	$a1, 0, newxyu
+  	move	$v0, $a0
+  	move	$v1, $a1
+  	j	moveReturn
+    newxyu:
+    	move	$t1, $a0
+    	addi	$a1, $a1, -2
+    	j	moveFrog
+  notUp:
+	j	moveReturn
+	# set color
+  moveFrog:
+  	# get moveincolor
+  	move	$t3, $t1
+  	move	$t4, $a1
+  	
+  	move	$a0, $t1
+  	jal	_getLED
+  	move	$t5, $v0
+  	
+  	addi	$a0, $a0, 1
+  	jal	_getLED
+  	move	$t6, $v0
+  	
+  	la	$a0, moveincolor
+  	sw	$t5, 0($a0)
+  	sw	$t6, 4($a0)
+  	
+  	move	$t1, $t3
+  	move	$a1, $t4
+  	
+  	la	$a0, updatefrog
+  	sw	$t1, 0($a0)
+  	sw	$a1, 4($a0)
+  	addi	$t1, $t1, 2
+  	sw	$t1, 8($a0)
+  	addi	$t1, $a1, 2
+  	sw	$t1, 12($a0)
+  	li	$a2, 3
+  	jal	_setBlock
+  	
+  	beq	$a3, 1, nodelete	# delete old
+  	la	$a0, oldfrog
+  	lw	$t1, 4($a0)
+  	blt	$t1, 56, nodelete
+  	li	$a2, 0
+  	jal	_setBlock
+  nodelete:	
+  	la	$t1, moveincolor
+  	lw	$a0, 0($t1)
+  	lw	$a1, 4($t1)
+	beq	$a0, 1, dead
+  	beq	$a1, 1, dead
+  	la	$t1, updatefrog
+  	lw	$a2, 4($t1)
+  	
+  	bgt	$a2, 7, nocheckLily
+	jal	_checkLily
+	j	win
+	
+  nocheckLily:
+  	la	$t1, updatefrog
+  	lw	$v0, 0($t1)
+  	lw	$v1, 4($t1)
+
+  moveReturn:
+	lw	$ra, 0($sp)	# epi-stack
+	addi	$sp, $sp, 12
+	jr	$ra
+
+############### _checkLily ###############
+	# void	_checkLily (int x1, int x2)
+_checkLily:
+	bne	$a0, 3, dead
+	bne	$a1, 3, dead
+  	jr	$ra
+
+############### _setBlock  ###############
+	# void _setFrog(int[] block, int color)
+	# a0 = address of block, a2 = color
+	# use $t4 & $t6 for x, $t5 & $t7 for y
+_setBlock:
+	addi	$sp, $sp, -4	# stack
+	sw	$ra, 0($sp)
+	
+	move	$t8, $a0
+	lw	$t6, 8($t8)
+	lw	$t7, 12($t8)
+	lw	$t5, 4($t8)
+  rows:
+	lw	$t4, 0($t8)
+  columns:
+  	move	$a0, $t4
+  	move	$a1, $t5
+  	
+  	jal	_setLED
+  	
+  	addi	$t4, $t4, 1
+  	slt	$t0, $t4, $t6
+  	bne	$t0, $0, columns
+  	
+  	addi	$t5, $t5, 1
+  	slt	$t0, $t5, $t7
+  	bne	$t0, $0, rows
+  	
+  	lw	$ra, 0($sp)	# epi-stack
+  	addi	$sp, $sp, 4
+  	jr	$ra
+	
+
+	# void _setLED(int x, int y, int color)
+	#   sets the LED at (x,y) to color
+	#   color: 0=off, 1=red, 2=orange, 3=green
+	#
+	# warning:   x, y and color are assumed to be legal values (0-63,0-63,0-3)
+	# arguments: $a0 is x, $a1 is y, $a2 is color 
+	# trashes:   $t0-$t3
+	# returns:   none
+	#
+_setLED:
+	# byte offset into display = y * 16 bytes + (x / 4)
+	sll	$t0,$a1,4      # y * 16 bytes
+	srl	$t1,$a0,2      # x / 4
+	add	$t0,$t0,$t1    # byte offset into display
+	li	$t2,0xffff0008	# base address of LED display
+	add	$t0,$t2,$t0    # address of byte with the LED
+	# now, compute led position in the byte and the mask for it
+	andi	$t1,$a0,0x3    # remainder is led position in byte
+	neg	$t1,$t1        # negate position for subtraction
+	addi	$t1,$t1,3      # bit positions in reverse order
+	sll	$t1,$t1,1      # led is 2 bits
+	# compute two masks: one to clear field, one to set new color
+	li	$t2,3		
+	sllv	$t2,$t2,$t1
+	not	$t2,$t2        # bit mask for clearing current color
+	sllv	$t1,$a2,$t1    # bit mask for setting color
+	# get current LED value, set the new field, store it back to LED
+	lbu	$t3,0($t0)     # read current LED value	
+	and	$t3,$t3,$t2    # clear the field for the color
+	or	$t3,$t3,$t1    # set color field
+	sb	$t3,0($t0)     # update display
+	jr	$ra
+
+
+	# int _getLED(int x, int y)
+	#   returns the value of the LED at position (x,y)
+	#
+	#  warning:   x and y are assumed to be legal values (0-63,0-63)
+	#  arguments: $a0 holds x, $a1 holds y
+	#  trashes:   $t0-$t2
+	#  returns:   $v0 holds the value of the LED (0, 1, 2, 3)
+	#
+_getLED:
+	# byte offset into display = y * 16 bytes + (x / 4)
+	sll  $t0,$a1,4      # y * 16 bytes
+	srl  $t1,$a0,2      # x / 4
+	add  $t0,$t0,$t1    # byte offset into display
+	la   $t2,0xffff0008
+	add  $t0,$t2,$t0    # address of byte with the LED
+	# now, compute bit position in the byte and the mask for it
+	andi $t1,$a0,0x3    # remainder is bit position in byte
+	neg  $t1,$t1        # negate position for subtraction
+	addi $t1,$t1,3      # bit positions in reverse order
+    	sll  $t1,$t1,1      # led is 2 bits
+	# load LED value, get the desired bit in the loaded byte
+	lbu  $t2,0($t0)
+	srlv $t2,$t2,$t1    # shift LED value to lsb position
+	andi $v0,$t2,0x3    # mask off any remaining upper bits
+	jr   $ra
+
+
+	# int _getKeyPress(void)
+	#	returns the key last pressed, unless there is none
+	#
+	# trashes: $t0-$t1
+	# returns in $v0:
+	#	0	No key pressed
+	# 	0x42	Middle button pressed
+	# 	0xE0	Up arrow 
+	# 	0xE1	Down arrow 
+	# 	0xE2	Left arrow 
+	# 	0xE3 Right arrow
+	#
+_getKeyPress:
+	la	$t1, 0xffff0000			# status register
+	li	$v0, 0				# default to no key pressed
+	lw	$t0, 0($t1)			# load the status
+	beq	$t0, $zero, _keypress_return	# no key pressed, return
+	lw	$v0, 4($t1)			# read the key pressed
+_keypress_return:
+	jr $ra

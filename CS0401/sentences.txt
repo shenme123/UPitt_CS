@@ -1,0 +1,5 @@
+name verb article adj obj
+article adj obj verb name
+article adj obj verb name
+name verb article adj obj
+name verb article adj obj

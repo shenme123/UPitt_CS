@@ -1,0 +1,4 @@
+Wentao Jiang
+wej10
+
+The frog can move as the instruction indicated. A frog will die when touching the red lava but will not when on a yellow stone. All stones are with velocity 1 for simplicity. When a frog dies, I set a 2 second freeze time and then restart a new fun. Score is printed as required after game. I didn't set a large loop to ask if user would play again though. Functions required are used with name: _moveFrog, _updateStone and _checkLily. Some other functions are used. For some occations it can be better to used functions but I didn't due to time reason. More features can be added if I didn't have too many other homework to deal with... Thanks and sorry.

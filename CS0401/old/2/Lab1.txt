@@ -1,0 +1,55 @@
+// 
+// your name:
+// your PittID: (i.e Joe75)
+
+import java.io.*; // I/O
+import java.util.*; // Scanner class
+
+public class Lab1
+{
+	public static void main( String args[] )
+	{
+		Scanner kbd = new Scanner (System.in);
+
+		// declare needed variables
+
+		// *note Java naming conventions
+
+		// prompt for input strings and convert inputted string values to their integer counterpart as needed
+
+		// use output stream to display output result to user
+
+	} // END MAIN METHOD
+} // EOF
+
+/*Today's objective is use the Scanner to read from the keyboard and use arithmetic operators correctly.
+
+Here is a sample program ConsoleIO.java that demonstrates Scanner and shows you how to read strings or numbers from the keybaord.
+
+Lab #1 will apply what we have learned about variables and operators and I/O. You will find it very helpful to use the starter code. Most programmers in fact start from some template or nearly empty shell of a program rather than re-writing the repetitious stuff that appears near the beginning of most java programs.
+
+Lab #1 will give you more practice with the Java Compiler. As a novice programmer -- most of your time will be spent doing battle with the compiler -- trying to understand why you are getting dozens of compilation errors on 5 lines of code. You must declare and use variables of the data types we have learned in class thus far. You will perform simple operations on these variables and print the formatted results to the screen. You will use the input and output streams to read input from the keyboard and write output to the screen.
+
+Setting up to start the Exercise
+
+Download the Lab1.java starter file to your desktop then open the file and look at the class definition shell. You must add your code inside the main method.
+
+The Task:
+
+Write a program that reads data items from the keyboard and writes output to the screen. The program must prompt for the data and perform operations on that data then print the results to the screen. It is your job to decide what variables to declare, and what data type each variable should be. You also must choose the correct operators to manipulate the data or the results will be wrong.
+
+Your program must perform the following tasks in this order
+
+Prompt user for firstName then  middleName then lastName 
+Prompt user for heightInInches
+Convert user input and store in proper variables
+Convert and display the height in inches to feet, then ft'' in', then meters (see below)
+Here is what your output should look like:
+
+Full Name: Clinton, William Jefferson
+Height in inches: 73
+Height in feet & inches: 6 ft. 1 in.
+Height in feet:  6.0833 
+Height in meters:  1.854139
+
+You will need to define a constant value (use keyword final) that will convert feet to meters. Use the value: 0.30479 as your feet to meters converter. For simplicity make sure all 3 parts of the name contain only letters of the alphabet and no spaces.*/

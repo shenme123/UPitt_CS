@@ -1,0 +1,6 @@
+football baseball,track hockey lacrosse
+baseball soccer,baseball hockey soccer
+football hoops,baseketball hoops football 
+soccer,soccer
+track gymnastics pole-vaulting,drinking partying girl-watching
+golf tennis,tennis golf

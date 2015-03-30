@@ -1,0 +1,27 @@
+import java.io.*;
+import java.util.*;
+
+public class HSDemo1
+{
+	public static void main( String[] args ) throws Exception
+	{
+		BufferedReader infile = new BufferedReader( new FileReader("sports.txt") );
+		while ( infile.ready() ) // i.e. while not EOF
+		{
+			String line  = infile.readLine(); //  "golf track,football track golf"
+			String[] sides = line.split(",");  //  sides[0]=["golf track"] sides[1]=["football track golf"]
+
+			HashSet<String> set1 = new HashSet<String>( Arrays.asList( sides[0].split( " ")) );
+			HashSet<String> set2 = new HashSet<String>( Arrays.asList(sides[1].split( " ")) );
+
+			// NOW WE ASK IF SET1 SUBSET of SET2
+
+			if ( set2.containsAll( set1 ) ) // then set1 is subset of set2
+				System.out.println( "set1: " + set1 + "  IS a subset of set2: " + set2 );
+			else
+				System.out.println( "set1: " + set1 + "  NOT a subset of set2: " + set2 );
+		}
+		infile.close();
+	} // END MAIN
+} // END CLASS
+

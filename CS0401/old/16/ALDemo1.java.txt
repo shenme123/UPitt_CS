@@ -1,0 +1,37 @@
+import java.util.*;
+import java.io.*;
+
+public class ALDemo1
+{
+    public static void main(String[] args) throws Exception
+    {
+	if (args.length<1)
+	{
+		System.out.println("Must enter name of file on cmd line.\n");
+		System.exit(0);
+	}
+        ArrayList<String> words = new ArrayList<String>();
+        BufferedReader infile = new BufferedReader( new FileReader(argv[0]) );
+        String word;
+        while ( (word=infile.readLine()) != null )
+            words.add( word );
+        infile.close();
+
+        // the Iterator way
+
+       Iterator<String> itr = words.iterator();
+        while (itr.hasNext())
+            System.out.print(itr.next() + " ");
+        System.out.println();
+
+        // the old fashioned loop way
+
+        for (int i=0 ; i<words.size() ; ++i )
+            System.out.print( words.get(i) + " " );
+        System.out.println("\n" );
+
+
+
+
+    }
+}

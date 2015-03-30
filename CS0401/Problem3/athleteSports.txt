@@ -1,0 +1,10 @@
+Hakeem Olajuwon,soccer basketball
+Carl Crawford,basketball baseball football
+John Elway,football baseball
+Dave Winfield,baseball football basketball
+Jackie Robinson,football track 
+Babe Didrikson,golf basketball track
+Jim Brown,football lacrosse
+Deion Sanders,baseball football
+Bo Jackson,baseball football
+Jim Thorpe,track football baseball basketball

@@ -1,0 +1,681 @@
+<html>
+
+<head>
+<meta http-equiv=Content-Type content="text/html; charset=utf-8">
+<meta name=Generator content="Microsoft Word 14 (filtered)">
+<title>Project 2</title>
+<style>
+<!--
+ /* Font Definitions */
+ @font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Cambria;
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+ /* Style Definitions */
+ p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin-top:0in;
+	margin-right:0in;
+	margin-bottom:10.0pt;
+	margin-left:0in;
+	line-height:115%;
+	font-size:11.0pt;
+	font-family:"Calibri","sans-serif";}
+h1
+	{mso-style-link:"Heading 1 Char";
+	margin-top:24.0pt;
+	margin-right:0in;
+	margin-bottom:0in;
+	margin-left:0in;
+	margin-bottom:.0001pt;
+	line-height:115%;
+	font-size:14.0pt;
+	font-family:"Cambria","serif";}
+h1.CxSpFirst
+	{mso-style-link:"Heading 1 Char";
+	margin-top:24.0pt;
+	margin-right:0in;
+	margin-bottom:0in;
+	margin-left:0in;
+	margin-bottom:.0001pt;
+	line-height:115%;
+	font-size:14.0pt;
+	font-family:"Cambria","serif";}
+h1.CxSpMiddle
+	{mso-style-link:"Heading 1 Char";
+	margin:0in;
+	margin-bottom:.0001pt;
+	line-height:115%;
+	font-size:14.0pt;
+	font-family:"Cambria","serif";}
+h1.CxSpLast
+	{mso-style-link:"Heading 1 Char";
+	margin:0in;
+	margin-bottom:.0001pt;
+	line-height:115%;
+	font-size:14.0pt;
+	font-family:"Cambria","serif";}
+h2
+	{mso-style-link:"Heading 2 Char";
+	margin-top:10.0pt;
+	margin-right:0in;
+	margin-bottom:0in;
+	margin-left:0in;
+	margin-bottom:.0001pt;
+	line-height:115%;
+	font-size:13.0pt;
+	font-family:"Cambria","serif";}
+h3
+	{mso-style-link:"Heading 3 Char";
+	margin-top:10.0pt;
+	margin-right:0in;
+	margin-bottom:0in;
+	margin-left:0in;
+	margin-bottom:.0001pt;
+	line-height:112%;
+	font-size:11.0pt;
+	font-family:"Cambria","serif";}
+h4
+	{mso-style-link:"Heading 4 Char";
+	margin-top:10.0pt;
+	margin-right:0in;
+	margin-bottom:0in;
+	margin-left:0in;
+	margin-bottom:.0001pt;
+	line-height:115%;
+	font-size:11.0pt;
+	font-family:"Cambria","serif";
+	font-style:italic;}
+h5
+	{mso-style-link:"Heading 5 Char";
+	margin-top:10.0pt;
+	margin-right:0in;
+	margin-bottom:0in;
+	margin-left:0in;
+	margin-bottom:.0001pt;
+	line-height:115%;
+	font-size:11.0pt;
+	font-family:"Cambria","serif";
+	color:#7F7F7F;}
+h6
+	{mso-style-link:"Heading 6 Char";
+	margin:0in;
+	margin-bottom:.0001pt;
+	line-height:112%;
+	font-size:11.0pt;
+	font-family:"Cambria","serif";
+	color:#7F7F7F;
+	font-style:italic;}
+p.MsoHeading7, li.MsoHeading7, div.MsoHeading7
+	{mso-style-link:"Heading 7 Char";
+	margin:0in;
+	margin-bottom:.0001pt;
+	line-height:115%;
+	font-size:11.0pt;
+	font-family:"Cambria","serif";
+	font-style:italic;}
+p.MsoHeading8, li.MsoHeading8, div.MsoHeading8
+	{mso-style-link:"Heading 8 Char";
+	margin:0in;
+	margin-bottom:.0001pt;
+	line-height:115%;
+	font-size:10.0pt;
+	font-family:"Cambria","serif";}
+p.MsoHeading9, li.MsoHeading9, div.MsoHeading9
+	{mso-style-link:"Heading 9 Char";
+	margin:0in;
+	margin-bottom:.0001pt;
+	line-height:115%;
+	font-size:10.0pt;
+	font-family:"Cambria","serif";
+	letter-spacing:.25pt;
+	font-style:italic;}
+p.MsoHeader, li.MsoHeader, div.MsoHeader
+	{mso-style-link:"Header Char";
+	margin-top:0in;
+	margin-right:0in;
+	margin-bottom:10.0pt;
+	margin-left:0in;
+	line-height:115%;
+	font-size:11.0pt;
+	font-family:"Calibri","sans-serif";}
+p.MsoFooter, li.MsoFooter, div.MsoFooter
+	{mso-style-link:"Footer Char";
+	margin-top:0in;
+	margin-right:0in;
+	margin-bottom:10.0pt;
+	margin-left:0in;
+	line-height:115%;
+	font-size:11.0pt;
+	font-family:"Calibri","sans-serif";}
+p.MsoCaption, li.MsoCaption, div.MsoCaption
+	{margin-top:0in;
+	margin-right:0in;
+	margin-bottom:10.0pt;
+	margin-left:0in;
+	line-height:115%;
+	font-size:10.0pt;
+	font-family:"Calibri","sans-serif";
+	font-weight:bold;}
+p.MsoTitle, li.MsoTitle, div.MsoTitle
+	{mso-style-link:"Title Char";
+	margin-top:0in;
+	margin-right:0in;
+	margin-bottom:10.0pt;
+	margin-left:0in;
+	border:none;
+	padding:0in;
+	font-size:26.0pt;
+	font-family:"Cambria","serif";
+	letter-spacing:.25pt;}
+p.MsoTitleCxSpFirst, li.MsoTitleCxSpFirst, div.MsoTitleCxSpFirst
+	{mso-style-link:"Title Char";
+	margin:0in;
+	margin-bottom:.0001pt;
+	border:none;
+	padding:0in;
+	font-size:26.0pt;
+	font-family:"Cambria","serif";
+	letter-spacing:.25pt;}
+p.MsoTitleCxSpMiddle, li.MsoTitleCxSpMiddle, div.MsoTitleCxSpMiddle
+	{mso-style-link:"Title Char";
+	margin:0in;
+	margin-bottom:.0001pt;
+	border:none;
+	padding:0in;
+	font-size:26.0pt;
+	font-family:"Cambria","serif";
+	letter-spacing:.25pt;}
+p.MsoTitleCxSpLast, li.MsoTitleCxSpLast, div.MsoTitleCxSpLast
+	{mso-style-link:"Title Char";
+	margin-top:0in;
+	margin-right:0in;
+	margin-bottom:10.0pt;
+	margin-left:0in;
+	border:none;
+	padding:0in;
+	font-size:26.0pt;
+	font-family:"Cambria","serif";
+	letter-spacing:.25pt;}
+p.MsoSubtitle, li.MsoSubtitle, div.MsoSubtitle
+	{mso-style-link:"Subtitle Char";
+	margin-top:0in;
+	margin-right:0in;
+	margin-bottom:30.0pt;
+	margin-left:0in;
+	line-height:115%;
+	font-size:12.0pt;
+	font-family:"Cambria","serif";
+	letter-spacing:.65pt;
+	font-style:italic;}
+a:link, span.MsoHyperlink
+	{color:blue;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{color:purple;
+	text-decoration:underline;}
+em
+	{letter-spacing:.5pt;
+	border:none;
+	font-weight:bold;}
+p.MsoNoSpacing, li.MsoNoSpacing, div.MsoNoSpacing
+	{margin:0in;
+	margin-bottom:.0001pt;
+	font-size:11.0pt;
+	font-family:"Calibri","sans-serif";}
+p.MsoListParagraph, li.MsoListParagraph, div.MsoListParagraph
+	{margin-top:0in;
+	margin-right:0in;
+	margin-bottom:10.0pt;
+	margin-left:.5in;
+	line-height:115%;
+	font-size:11.0pt;
+	font-family:"Calibri","sans-serif";}
+p.MsoListParagraphCxSpFirst, li.MsoListParagraphCxSpFirst, div.MsoListParagraphCxSpFirst
+	{margin-top:0in;
+	margin-right:0in;
+	margin-bottom:0in;
+	margin-left:.5in;
+	margin-bottom:.0001pt;
+	line-height:115%;
+	font-size:11.0pt;
+	font-family:"Calibri","sans-serif";}
+p.MsoListParagraphCxSpMiddle, li.MsoListParagraphCxSpMiddle, div.MsoListParagraphCxSpMiddle
+	{margin-top:0in;
+	margin-right:0in;
+	margin-bottom:0in;
+	margin-left:.5in;
+	margin-bottom:.0001pt;
+	line-height:115%;
+	font-size:11.0pt;
+	font-family:"Calibri","sans-serif";}
+p.MsoListParagraphCxSpLast, li.MsoListParagraphCxSpLast, div.MsoListParagraphCxSpLast
+	{margin-top:0in;
+	margin-right:0in;
+	margin-bottom:10.0pt;
+	margin-left:.5in;
+	line-height:115%;
+	font-size:11.0pt;
+	font-family:"Calibri","sans-serif";}
+p.MsoQuote, li.MsoQuote, div.MsoQuote
+	{mso-style-link:"Quote Char";
+	margin-top:10.0pt;
+	margin-right:.25in;
+	margin-bottom:0in;
+	margin-left:.25in;
+	margin-bottom:.0001pt;
+	line-height:115%;
+	font-size:11.0pt;
+	font-family:"Calibri","sans-serif";
+	font-style:italic;}
+p.MsoIntenseQuote, li.MsoIntenseQuote, div.MsoIntenseQuote
+	{mso-style-link:"Intense Quote Char";
+	margin-top:10.0pt;
+	margin-right:.8in;
+	margin-bottom:14.0pt;
+	margin-left:.7in;
+	text-align:justify;
+	line-height:115%;
+	border:none;
+	padding:0in;
+	font-size:11.0pt;
+	font-family:"Calibri","sans-serif";
+	font-weight:bold;
+	font-style:italic;}
+span.MsoSubtleEmphasis
+	{font-style:italic;}
+span.MsoIntenseEmphasis
+	{font-weight:bold;}
+span.MsoSubtleReference
+	{font-variant:small-caps;}
+span.MsoIntenseReference
+	{font-variant:small-caps;
+	letter-spacing:.25pt;
+	text-decoration:underline;}
+span.MsoBookTitle
+	{font-variant:small-caps;
+	letter-spacing:.25pt;
+	font-style:italic;}
+p.MsoTocHeading, li.MsoTocHeading, div.MsoTocHeading
+	{margin-top:24.0pt;
+	margin-right:0in;
+	margin-bottom:0in;
+	margin-left:0in;
+	margin-bottom:.0001pt;
+	line-height:115%;
+	font-size:14.0pt;
+	font-family:"Cambria","serif";
+	font-weight:bold;}
+p.MsoTocHeadingCxSpFirst, li.MsoTocHeadingCxSpFirst, div.MsoTocHeadingCxSpFirst
+	{margin-top:24.0pt;
+	margin-right:0in;
+	margin-bottom:0in;
+	margin-left:0in;
+	margin-bottom:.0001pt;
+	line-height:115%;
+	font-size:14.0pt;
+	font-family:"Cambria","serif";
+	font-weight:bold;}
+p.MsoTocHeadingCxSpMiddle, li.MsoTocHeadingCxSpMiddle, div.MsoTocHeadingCxSpMiddle
+	{margin:0in;
+	margin-bottom:.0001pt;
+	line-height:115%;
+	font-size:14.0pt;
+	font-family:"Cambria","serif";
+	font-weight:bold;}
+p.MsoTocHeadingCxSpLast, li.MsoTocHeadingCxSpLast, div.MsoTocHeadingCxSpLast
+	{margin:0in;
+	margin-bottom:.0001pt;
+	line-height:115%;
+	font-size:14.0pt;
+	font-family:"Cambria","serif";
+	font-weight:bold;}
+span.TitleChar
+	{mso-style-name:"Title Char";
+	mso-style-link:Title;
+	font-family:"Cambria","serif";
+	letter-spacing:.25pt;}
+span.Heading1Char
+	{mso-style-name:"Heading 1 Char";
+	mso-style-link:"Heading 1";
+	font-family:"Cambria","serif";
+	font-weight:bold;}
+span.Heading2Char
+	{mso-style-name:"Heading 2 Char";
+	mso-style-link:"Heading 2";
+	font-family:"Cambria","serif";
+	font-weight:bold;}
+span.Heading3Char
+	{mso-style-name:"Heading 3 Char";
+	mso-style-link:"Heading 3";
+	font-family:"Cambria","serif";
+	font-weight:bold;}
+span.Heading4Char
+	{mso-style-name:"Heading 4 Char";
+	mso-style-link:"Heading 4";
+	font-family:"Cambria","serif";
+	font-weight:bold;
+	font-style:italic;}
+span.Heading5Char
+	{mso-style-name:"Heading 5 Char";
+	mso-style-link:"Heading 5";
+	font-family:"Cambria","serif";
+	color:#7F7F7F;
+	font-weight:bold;}
+span.Heading6Char
+	{mso-style-name:"Heading 6 Char";
+	mso-style-link:"Heading 6";
+	font-family:"Cambria","serif";
+	color:#7F7F7F;
+	font-weight:bold;
+	font-style:italic;}
+span.Heading7Char
+	{mso-style-name:"Heading 7 Char";
+	mso-style-link:"Heading 7";
+	font-family:"Cambria","serif";
+	font-style:italic;}
+span.Heading8Char
+	{mso-style-name:"Heading 8 Char";
+	mso-style-link:"Heading 8";
+	font-family:"Cambria","serif";}
+span.Heading9Char
+	{mso-style-name:"Heading 9 Char";
+	mso-style-link:"Heading 9";
+	font-family:"Cambria","serif";
+	letter-spacing:.25pt;
+	font-style:italic;}
+span.SubtitleChar
+	{mso-style-name:"Subtitle Char";
+	mso-style-link:Subtitle;
+	font-family:"Cambria","serif";
+	letter-spacing:.65pt;
+	font-style:italic;}
+span.QuoteChar
+	{mso-style-name:"Quote Char";
+	mso-style-link:Quote;
+	font-style:italic;}
+span.IntenseQuoteChar
+	{mso-style-name:"Intense Quote Char";
+	mso-style-link:"Intense Quote";
+	font-weight:bold;
+	font-style:italic;}
+span.HeaderChar
+	{mso-style-name:"Header Char";
+	mso-style-link:Header;}
+span.FooterChar
+	{mso-style-name:"Footer Char";
+	mso-style-link:Footer;}
+ /* Page Definitions */
+ @page WordSection1
+	{size:8.5in 11.0in;
+	margin:1.0in 1.0in 1.0in 1.0in;}
+div.WordSection1
+	{page:WordSection1;}
+ /* List Definitions */
+ ol
+	{margin-bottom:0in;}
+ul
+	{margin-bottom:0in;}
+-->
+</style>
+
+</head>
+
+<body lang=EN-US link=blue vlink=purple>
+
+<div class=WordSection1>
+
+<div style='border:none;border-bottom:solid windowtext 1.0pt;padding:0in 0in 1.0pt 0in'>
+
+<p class=MsoTitleCxSpFirst style='text-align:justify'>CS 0447 – Project 2: Frogger</p>
+
+<p class=MsoTitleCxSpLast>Due: Sunday, November 10, 2013 by 11:59pm</p>
+
+</div>
+
+<h1>Description</h1>
+
+<p class=MsoNormal>Many video games of the past were programmed directly in
+assembly language. In this project, we’ll be taking an early Konami video game,
+Frogger, and making a version in MIPS under MARS.</p>
+
+<p class=MsoNormal>If you are unfamiliar with the game, you might want to look
+at the Wikipedia article, <a href="http://en.wikipedia.org/wiki/Frogger">http://en.wikipedia.org/wiki/Frogger</a>
+or find a modern adaptation (or emulated old version) to try it.</p>
+
+<p class=MsoNormal>The basic idea is that you are guiding a frog through an obstacle
+course to get to its home. You start at the bottom of the screen and make your
+way upwards to one of three safe lily pads. </p>
+
+<p class=MsoNormal>In our version, we will be guiding the frog over moving stones
+that are floating by in a river of lava. </p>
+
+<h1>Tools</h1>
+
+<p class=MsoNormal style='text-align:justify'>After your first project, you
+might be wondering how to get MARS to make something as awesome as a video
+game. For this, we can thank several graduate students and Dr. Childers for a
+modified version of MARS that contains a LED display which we can control. The
+display is an array of pixels (64 x 64) and each LED can be one of 4 colors:
+off (black), red, green, or yellow/orange. </p>
+
+<p class=MsoNormal style='text-align:justify'>In later courses, we’ll discuss
+two strategies for talking to I/O devices from machine instructions. In this
+case, the pixel display is memory-mapped. This means that a byte in our address
+space is reserved for each pixel, and that the content of that array is
+reflected in the output of our display. Learning about the memory-mapped I/O is
+not the core of the project and so we provide get and set methods for
+manipulating a pixel at a specified location.</p>
+
+<p class=MsoNormal style='text-align:justify'>Additionally, the LED display has
+support for a key pad. It can handle either button presses on the dialog box or
+you can use the keys on your keyboard (WASD).</p>
+
+<p class=MsoNormal style='text-align:justify'>You will need to download this
+special modified version of MARS from the class webpage in order to do this
+project.</p>
+
+<p class=MsoNormal style='text-align:justify'>When you wish to use it, go into
+the tools menu and select “Keypad and LED Display Simulator”. In the window
+that appears, click “Connect to MIPS”. Then run the program in MARS using the
+green play button.</p>
+
+<h1>Your Frog</h1>
+
+<div align=center>
+
+<table class=MsoTableGrid border=1 cellspacing=0 cellpadding=0
+ style='margin-left:221.4pt;border-collapse:collapse;border:none'>
+ <tr>
+  <td width=24 valign=top style='width:.25in;border:solid windowtext 1.0pt;
+  background:#9BBB59;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNoSpacing>&nbsp;</p>
+  </td>
+  <td width=24 valign=top style='width:.25in;border:solid windowtext 1.0pt;
+  border-left:none;background:#9BBB59;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNoSpacing>&nbsp;</p>
+  </td>
+ </tr>
+ <tr>
+  <td width=24 valign=top style='width:.25in;border:solid windowtext 1.0pt;
+  border-top:none;background:#9BBB59;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNoSpacing>&nbsp;</p>
+  </td>
+  <td width=24 valign=top style='width:.25in;border-top:none;border-left:none;
+  border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  background:#9BBB59;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNoSpacing>&nbsp;</p>
+  </td>
+ </tr>
+</table>
+
+</div>
+
+<p class=MsoNormal style='text-align:justify'>Your frog is a 2x2 rectangle of
+green LEDs. It moves +2 in the indicated direction whenever a directional key
+is pressed. </p>
+
+<p class=MsoNormal style='text-align:justify'>Initially the frog is centered in
+the screen in the 8<sup>th</sup> and 7<sup>th</sup> rows from the bottom.</p>
+
+<h1>The Lava</h1>
+
+<p class=MsoNormal>The lava is a 48x64 rectangle of red LEDs that will be 8
+LEDs from the top and bottom of the screen.</p>
+
+<p class=MsoNormal>If the frog ever touches a red LED, it is dead.</p>
+
+<h1>A Stone</h1>
+
+<p class=MsoNormal>A stone will be a 6xN rectangle of yellow LEDs, where N is a
+random number from 8 to 12 generated for each stone. </p>
+
+<p class=MsoNormal>To span the river, we will need 6 stones to float by. The
+stones in the 1<sup>st</sup>, 3<sup>rd</sup>, and 5<sup>th</sup> rows will head
+to the left. The 2<sup>nd</sup>, 4<sup>th</sup>, and 6<sup>th</sup> row stones
+will head to the right. Each stone will have a velocity (the number of LEDs it
+moves each time step) that is a random value from 1 to 3. Stones start from
+offscreen and each time step will move in the proper direction with the proper
+velocity.</p>
+
+<p class=MsoNormal>After the stone has moved 2 LEDs away from the edge it
+started at, a new stone can spawn with probability 10% (generate a random
+number from 0-9. If it’s 0 spawn a new stone).</p>
+
+<p class=MsoNormal>You may limit it so that there are never more than 2 stones
+in a given lane at any time.</p>
+
+<h1>Lily pads</h1>
+
+<div align=center>
+
+<table class=MsoTableGrid border=1 cellspacing=0 cellpadding=0
+ style='border-collapse:collapse;border:none'>
+ <tr>
+  <td width=25 valign=top style='width:18.9pt;border:solid windowtext 1.0pt;
+  background:#9BBB59;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNoSpacing>&nbsp;</p>
+  </td>
+  <td width=24 valign=top style='width:.25in;border:solid windowtext 1.0pt;
+  border-left:none;background:#9BBB59;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNoSpacing>&nbsp;</p>
+  </td>
+  <td width=24 valign=top style='width:.25in;border:solid windowtext 1.0pt;
+  border-left:none;background:#9BBB59;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNoSpacing>&nbsp;</p>
+  </td>
+  <td width=24 valign=top style='width:.25in;border:solid windowtext 1.0pt;
+  border-left:none;background:#9BBB59;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNoSpacing>&nbsp;</p>
+  </td>
+  <td width=24 valign=top style='width:.25in;border:solid windowtext 1.0pt;
+  border-left:none;background:#9BBB59;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNoSpacing>&nbsp;</p>
+  </td>
+  <td width=24 valign=top style='width:.25in;border:solid windowtext 1.0pt;
+  border-left:none;background:#9BBB59;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNoSpacing>&nbsp;</p>
+  </td>
+ </tr>
+ <tr>
+  <td width=25 valign=top style='width:18.9pt;border:solid windowtext 1.0pt;
+  border-top:none;background:#9BBB59;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNoSpacing>&nbsp;</p>
+  </td>
+  <td width=24 valign=top style='width:.25in;border-top:none;border-left:none;
+  border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  background:#9BBB59;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNoSpacing>&nbsp;</p>
+  </td>
+  <td width=24 valign=top style='width:.25in;border-top:none;border-left:none;
+  border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  background:#9BBB59;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNoSpacing>&nbsp;</p>
+  </td>
+  <td width=24 valign=top style='width:.25in;border-top:none;border-left:none;
+  border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  background:#9BBB59;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNoSpacing>&nbsp;</p>
+  </td>
+  <td width=24 valign=top style='width:.25in;border-top:none;border-left:none;
+  border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  background:#9BBB59;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNoSpacing>&nbsp;</p>
+  </td>
+  <td width=24 valign=top style='width:.25in;border-top:none;border-left:none;
+  border-bottom:solid windowtext 1.0pt;border-right:solid windowtext 1.0pt;
+  background:#9BBB59;padding:0in 5.4pt 0in 5.4pt'>
+  <p class=MsoNoSpacing>&nbsp;</p>
+  </td>
+ </tr>
+</table>
+
+</div>
+
+<p class=MsoNormal>A lily pad is a 2x6 rectangle of green LEDS. There are to be
+three of them, one on the left edge of the screen, one on the right edge of the
+screen, and one centered between them (23 LEDs from the edge ones). They appear
+in the 7<sup>th</sup> and 8<sup>th</sup> rows from the top of the screen.</p>
+
+<p class=MsoNormal>To safely make it home, a frog must entirely be in a lily pad,
+with no part of it hitting the black void between them or outside of the bounds
+of the screen.</p>
+
+<h1>Game Requirements</h1>
+
+<ol style='margin-top:0in' start=1 type=1>
+ <li class=MsoNormal>A frog is initially a 2x2 rectangle of green LEDs. It
+     starts at the center of the LED display, 8 rows from the bottom of the
+     screen. </li>
+ <li class=MsoNormal>A red rectangle, 64 LEDs wide and 48 LEDs high will be
+     placed 8 LEDs from the top of the screen. </li>
+ <li class=MsoNormal>Yellow stones appear as described above.</li>
+ <li class=MsoNormal>For a key press left or right, move the frog two LEDs in
+     the appropriate direction. The frog can move on a log or on the black ground
+     it began on.</li>
+ <li class=MsoNormal>To animate movement, you will turn on an LED in front of
+     the moving item and turn off an LED (set its color to the background) at
+     the back. </li>
+ <li class=MsoNormal>You will update the position of the stones every 200
+     milliseconds and the frog with each keypress.</li>
+ <ol style='margin-top:0in' start=1 type=a>
+  <li class=MsoNormal>You can use syscall 32 in MARS to sleep for a specified
+      number of milliseconds.</li>
+ </ol>
+ <li class=MsoNormal>A life is lost when the frog touches a red LED,  is not
+     entirely inside of a lily pad on the final jump, or scrolls off of the
+     screen on a stone. The game resets as per #1 above.</li>
+ <li class=MsoNormal>Every time a frog lands in a lily pad, their score is incremented
+     by 100 points and the game continues with the frog in its initial position.</li>
+ <li class=MsoNormal>There are 3 lives initially.</li>
+ <li class=MsoNormal>When the game ends, the score is printed using the print syscalls.</li>
+ <li class=MsoNormal>You must use functions in this project. At minimum you
+     need a function that updates the frog position, one that updates the stone
+     positions, and one that checks if the frog is in a lily pad. You may use
+     others, but those three are required.</li>
+ <li class=MsoNormal>Functions must follow the MIPS calling convention. Use the
+     stack for spills. Use the $a0-$a3 registers for arguments and $v0-$v1 for
+     return values.</li>
+</ol>
+
+<h1>Submission</h1>
+
+<p class=MsoNormal>Create a zip file of your source code and a README.txt text
+file that has your name, your Pitt username and any notes for the TA to help
+with grading.</p>
+
+<p class=MsoNormal>Name the file <span style='font-family:"Courier New"'>USERNAME-project2.zip</span></p>
+
+<p class=MsoNormal>Use the lab submission policies to upload your project.</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+</div>
+
+</body>
+
+</html>

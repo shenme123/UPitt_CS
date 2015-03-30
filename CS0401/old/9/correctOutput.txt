@@ -1,0 +1,67 @@
+C:\>java Lab5 input.txt
+[0]=Four
+[1]=score
+[2]=and
+[3]=seven
+[4]=years
+[5]=ago
+[6]=our
+[7]=fathers
+[8]=brought
+[9]=forth
+[10]=on
+[11]=this
+[12]=continent
+[13]=a
+[14]=new
+[15]=nation
+[16]=conceived
+[17]=in
+[18]=Liberty
+[19]=and
+[20]=dedicated
+[21]=to
+[22]=the
+[23]=proposition
+[24]=that
+[25]=all
+[26]=men
+[27]=are
+[28]=created
+[29]=equal
+ARRAY CAPACITY IS: 40
+ARRAY COUNT IS:    30
+
+AFTER BUBBLESORT AND TRIM:
+[0]=Four
+[1]=Liberty
+[2]=a
+[3]=ago
+[4]=all
+[5]=and
+[6]=and
+[7]=are
+[8]=brought
+[9]=conceived
+[10]=continent
+[11]=created
+[12]=dedicated
+[13]=equal
+[14]=fathers
+[15]=forth
+[16]=in
+[17]=men
+[18]=nation
+[19]=new
+[20]=on
+[21]=our
+[22]=proposition
+[23]=score
+[24]=seven
+[25]=that
+[26]=the
+[27]=this
+[28]=to
+[29]=years
+ARRAY CAPACITY IS: 30
+ARRAY COUNT IS:    30

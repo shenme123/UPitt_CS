@@ -1,0 +1,162 @@
+import java.util.*;
+import java.io.*;
+
+public class Project5
+{
+	private static long size = 0;
+	private static int countFiles = 0;
+	private static int countDir = 0;
+	private static int matches = 0;
+	public static void main(String args[]) throws Exception
+	{
+/*		Scanner kbd = new Scanner (System.in);
+		System.out.println("Please choose input style (70/90/100):");
+		String choice = kbd.next();
+*/
+		int length = args.length;
+		String fname = new String (args[0]);
+		File f = new File (fname);
+		
+		File [] children = f.listFiles();
+
+
+
+		for ( File child : children )
+		{
+			if (length == 1 )
+			{
+				search ( child );
+			}
+			else if (length == 2 )
+			{
+				String regex = new String (args[1]);
+				if (searchRegEx (child, regex))
+				{
+					countDir ++;
+				}
+			}
+			else if (length==3 )
+			{
+				String regex = new String (args[1]);
+				String cont = new String (args[2]);
+				if (searchRegExInBoth (child, regex, cont) )
+				{
+					countDir ++;
+				}
+			}
+			
+		}
+		System.out.println();
+		System.out.println( size + " bytes in " + countFiles +" files in " + countDir + " directories" );
+		System.out.println("Total line matches: "+matches);
+		System.out.println()
+		
+	}
+	
+	//%70 version: print files and directories
+	private static void search ( File f )
+	{
+		if ( ! f.exists() )
+			System.out.println("File: " + f.getAbsolutePath()+ "does not exist." );
+
+		else if ( !f.isDirectory() )
+		{
+			countFiles ++ ;
+			size += f.length();
+			System.out.println( f.getAbsolutePath() );
+		}
+
+		else
+		{
+			countDir ++ ;
+			System.out.println ( f.getAbsolutePath() );
+			File [] children = f.listFiles();
+			for ( File child : children )
+			{
+				search ( child );
+			}
+		}
+	}
+	
+
+	//90% version: match expression in file names.
+	private static boolean searchRegEx (File f, String regex)
+	{
+		if (!f.exists()) 
+		{
+			System.out.println("File: " + f.getAbsolutePath()+ "does not exist." );
+			return false;
+		}
+		else if (!f.isDirectory() ) 
+		{
+			if ( f.getName().matches(regex) )
+			{
+				System.out.println( f.getAbsolutePath() );
+				countFiles ++;
+				size += f.length();
+				return true;
+			}
+			else 
+				return false;
+		}
+		else 
+		{
+			File [] children = f.listFiles();
+			boolean flag = false;
+			for ( File child : children )
+			{
+				if ( searchRegEx (child, regex) )
+					 flag = true;
+			}
+			return flag;
+		}
+	}
+
+	//%100 version: matches expression in file names and contents.
+	private static boolean searchRegExInBoth ( File f, String regex, String cont ) throws Exception
+	{
+		if (!f.exists())
+		{
+			System.out.println("File: " + f.getAbsolutePath()+ "does not exist." );
+			return false;
+		}
+		else if (!f.isDirectory() )
+		{
+			if ( !f.getName().matches(regex) )
+				return false;
+			BufferedReader reader = new BufferedReader(new FileReader(f));
+			int count = 0;
+			while (reader.ready())
+			{
+				String line = reader.readLine();
+				if ( line.matches(cont) )
+				{
+					if (count == 0)
+					{
+						System.out.println( f.getAbsolutePath() );
+						countFiles ++;
+						size += f.length();
+						count ++;
+					}
+					matches ++;
+					System.out.println( line );
+				}
+			}
+			reader.close();
+			if (count==0)
+				return false;
+			return true;
+		}
+		else 
+		{
+			File [] children = f.listFiles();
+			boolean flag = false;
+			for ( File child : children )
+			{
+				if ( searchRegExInBoth (child, regex, cont) )
+					 flag = true;
+			}
+			return flag;
+		}
+	}
+}

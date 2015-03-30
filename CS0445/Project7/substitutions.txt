@@ -1,0 +1,5 @@
+name Fred Marie Lin Jose DeShawn
+verb throws shoots eats chases breaks rides
+article a the this that
+adj big red small blue lazy
+obj wagon ball phone jackhammer violin bank

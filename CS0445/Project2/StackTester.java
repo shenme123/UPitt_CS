@@ -1,0 +1,177 @@
+import java.io.*;
+
+public class StackTester
+{
+	public static void main( String args[] ) throws Exception
+	{
+		Stack myStack = new Stack();
+
+		BufferedReader infile = new BufferedReader( new FileReader(args[0]) );
+		while (infile.ready())
+			myStack.push( infile.readLine() );
+		infile.close();
+
+		System.out.println("\nmyStack after loading from " + args[0] + "\n" + myStack); // invokes toString
+
+		Stack newStack = new Stack(myStack);
+		System.out.println( "new Stack: " + newStack);
+
+		System.out.println("\npopping newstack one by one printing each top element's data:");
+		System.out.println(newStack.search("gorp"));
+
+		while (! newStack.empty() )
+		{
+			Comparable data = newStack.pop();
+			System.out.println( "top element's data: " + data );
+		}
+		System.out.println( "newStack now empty? " +  newStack.empty() ); // should print "true"
+
+		System.out.println( "new Stack: " + newStack);
+
+		// RELOAD STACK AND TEST makeEmpty
+
+		System.out.println( "\nReloading myStack from " + args[0] + "\n");
+		infile = new BufferedReader( new FileReader(args[0]) );
+		while (infile.ready())
+				myStack.push( infile.readLine() );
+		infile.close();
+		System.out.println("\nmyStack after RE-loading from " + args[0] + "\n" + myStack);  // invokes toString
+		myStack.makeEmpty();
+		System.out.println ("\nmyStack after calling makeEmpty() " + myStack ); // should not print any values
+
+
+	} // END MAIN
+} // END STACK TESTER CLASS
+
+class Stack
+{
+	LE stack;
+
+	public Stack (){};
+
+	public Stack (Stack other)
+	{
+		stack = copyStackR(this.stack, other.stack);
+	}
+	private LE copyStackR( LE revStack, LE stackO )
+	{
+		if (stackO != null){
+			revStack = new LE(stackO.getData(), revStack);
+			revStack.setNext(copyStackR (revStack.getNext(), stackO.getNext()));
+		}
+		return revStack;
+	}
+
+	// 25% push : add an element to the front/top of the stack
+	public void push( Comparable data )
+	{
+		LE newLE = new LE(data, stack);
+		stack = newLE;
+	}
+    // 35% pop : remove the first element and return that element's data value
+	public Comparable pop()
+	{
+		// YOUR CODE HERE
+		Comparable popData = stack.getData();
+		stack = stack.getNext();
+		return popData;  // just to make it compile
+	}
+    // 20% front : return (but not remove) front element's data vale
+
+	public Comparable front()
+	{
+		// YOUR CODE HERE
+		return stack.getData();  // just to make it compile
+	}
+
+    // 10% empty : boolean tells if stack is empty
+	public boolean empty()
+	{
+		// YOUR CODE HERE
+		if (stack == null)
+			return true;
+		return false;  // just to make it compile
+	}
+
+    // 10% makeEmpty : remove all the elements from the list making stack ptr == NULL
+	public void  makeEmpty()
+	{
+		// YOUR CODE HERE
+		stack = null;
+	}
+
+	public boolean search( Comparable data )
+	{
+		return searchR ( stack, data);
+	}
+	private boolean searchR( LE stack, Comparable data)
+	{
+		if (stack != null)
+		{
+			if (stack.getData().equals(data))
+				return true;
+			return searchR (stack.getNext(), data);
+		}
+		return false;
+	}
+
+	public String toString()
+	{
+		String s= "";
+		if (empty()) return s;
+
+		s= "[stack:] --> ";
+		LE iter = stack;
+		while (iter!=null)
+		{
+			s += iter.getData();
+			if (iter.getNext() != null) s+= " --> ";
+			iter = iter.getNext();
+		}
+		return s;
+	}
+
+}
+
+
+class LE
+{
+  private Comparable data;
+  private LE next;
+
+  public LE()
+  {
+    this( null, null );
+  }
+
+  public LE(Comparable data)
+  {
+    this( data, null );
+  }
+
+  public LE(Comparable data, LE next)
+  {
+    setData( data );
+    setNext( next );
+  }
+
+  public Comparable getData()
+  {
+    return data;
+  }
+
+  public LE getNext()
+  {
+    return next;
+  }
+
+  public void setData(Comparable data)
+  {
+     this.data = data;
+  }
+
+  public void setNext(LE next)
+  {
+    this.next = next;
+  }
+} //EOF

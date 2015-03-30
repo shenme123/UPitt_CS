@@ -1,0 +1,148 @@
+import java.io.*;
+import java.util.*;
+
+public class Problem4
+{
+	public static void main( String args[] ) throws Exception
+	{
+		BufferedReader infile1 = new BufferedReader( new FileReader( args[0] ) );
+		BufferedReader infile2 = new BufferedReader( new FileReader( args[1] ) );
+
+		String[] set1 = loadSet( infile1 );
+		String[] set2 = loadSet( infile2 );
+
+		printSet( "set1: ",set1 );
+		printSet( "set2: ",set2 );
+
+		String[] union = union( set1, set2 );
+		printSet( "\nunion: ", union );
+
+
+		String[] intersection = intersection( set1, set2 );
+		printSet( "\nintersection: ",intersection );
+
+		String[] difference = difference( set1, set2 );
+		printSet( "\ndifference: ",difference );
+
+		String[] xor = xor( set1, set2 );
+		printSet("\nxor: ", xor );
+
+		System.out.println( "\nSets Echoed after operations.");
+
+		printSet( "set1: ", set1 );
+		printSet( "set2: ", set2 );
+
+	}// END MAIN
+
+
+	/* ###############################################################
+		For each of the following set operations you must execute the following steps:
+		1) dimension an array that is just big enough to handle the largest possible set for that operation.
+		2) add the appropriate elements to the array as the operation prescribes.
+		3) before returning the array, resize it to the exact size as the number of elements in it.
+	*/
+
+
+	static String[] union( String[] set1, String[] set2 )
+	{
+		int num = set1.length + set2.length;
+		String[] union = new String[num]; 
+		for (int i=0; i<set1.length; i++)
+			union[i] = set1[i];
+		for (int j=0 ; j<set2.length; j++)
+			union[set1.length+j] = set2[j];
+		Arrays.sort(union);
+		return union; // change this to return a trimmed full array
+	}
+
+	static String[] intersection( String[] set1, String[] set2 )
+	{
+		int num = set1.length>set2.length? set1.length:set2.length;
+		String[] intersection = new String[num];
+		int count = 0;
+		for (String s1:set1 )
+		{
+			for (String s2:set2)
+			{
+				if (s1.equals(s2))
+				{
+					intersection[count] = s1;
+					count++;
+				}
+			}
+		}
+		return trimArray(intersection, count); // change this to return a trimmed full array
+	}
+
+	static String[] difference( String[] set1, String[] set2 )
+	{
+		String[] difference = new String[set1.length];
+		int count = 0;
+		int flag = 1;
+		for (String s1: set1)
+		{
+			for (String s2: set2)
+			{
+				if (s1.equals(s2))
+				{
+					flag = 0;
+					break;
+				}
+			}
+			if (flag==1)
+			{
+				difference[count] = s1;
+				count++;
+			}
+			flag = 1;
+		}
+		return trimArray(difference, count); // change this to return a trimmed full array
+	}
+
+	static String[] xor( String[] set1, String[] set2 )
+	{
+		return difference(union(set1, set2), intersection(set1,set2)); // change this to return a trimmed full array
+	}
+
+	// return an array of length newSize with all data from the old array stored in the new array
+	static String[] doubleLength( String[] old )
+	{
+		String[] newArr = new String[old.length*2];
+		System.arraycopy(old, 0, newArr, 0, old.length);
+		return newArr; // you change accordingly
+	}
+
+	// return an array of length cnt with all data from the old array stored in the new array
+	static String[] trimArray( String[] old, int cnt )
+	{
+		String[] newArr = new String[cnt];
+		System.arraycopy(old, 0, newArr, 0, cnt);		
+		return newArr; // you change accordingly
+	}
+
+	static String[] loadSet( BufferedReader infile ) throws Exception
+	{
+		final int INITIAL_LENGTH = 5;
+		int cnt=0;
+		String[] set = new String[INITIAL_LENGTH];
+		while( infile.ready() )
+		{
+				if (cnt >= set.length)
+					set = doubleLength( set );
+				set[ cnt++ ] = infile.readLine();
+		}
+		infile.close();
+		return trimArray( set, cnt );
+	}
+
+	// You must iterate thru your container and print out the items in sorted order
+	// MUST MATCH OUTPUt EXACTLY!
+	static void printSet( String caption, String [] set )
+	{
+		System.out.print(caption);
+		Arrays.sort(set);
+		for (String s: set )
+			System.out.print(s+" ");
+		System.out.println();
+	}
+} // END CLASS
